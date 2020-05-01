@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #5295f1;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h3 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.container {
+    width: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.circle {
+    background-color: #fff;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    margin: 8px;
+    cursor: pointer;
+    transition: transform 0.3s linear;
+}
+
+.circle.grow{
+    transform: scale(2);
+}
