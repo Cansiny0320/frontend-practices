@@ -1,0 +1,106 @@
+:root {
+	--primary-color: #c62f2f;
+	--primary-daeker-color: #a82828;
+	--play-color: #e83c3c;
+	--secondary-color: #fafafa;
+	--aside-color: #f5f5f7;
+	--aside-active-color: #e6e7ea;
+	--text-dark-pray: #5c5c5c;
+	--text-dark-active: #000000;
+	--text-lighter-color: #7d7d7d;
+	--border-color: #e1e1e2;
+	--text-wrapper-title: #333333;
+	--footer-color: #f6f6f8;
+	--progress-bar: #c2c2c4;
+	--scroll-bar-color: #e1e1e2;
+	--scroll-bar-color-hover: #cfcfd1;
+}
+
+.music-list .content {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: repeat(20, 1fr);
+	justify-items: stretch;
+	column-gap: 5px;
+	row-gap: 40px;
+	padding: 10px 0;
+}
+.music-list .select-btn {
+	display: inline-block;
+	background-color: #fff;
+	color: var(--text-dark-active);
+	padding: 5px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
+	text-align: center;
+}
+
+.music-list .select-btn:hover {
+	background-color: #f5f5f7;
+}
+.tag-nav {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	color: var(--text-dark-pray);
+	padding: 10px 0;
+}
+
+.tag-nav .title {
+	color: var(--text-dark-active);
+}
+.tag-nav .tag {
+	padding: 0 20px;
+	position: relative;
+}
+.tag-nav .tag::after {
+	content: "";
+	position: absolute;
+	height: 100%;
+	width: 1px;
+	background-color: rgba(0, 0, 0, 0.2);
+	right: 0;
+}
+.tag-nav .tag:last-child::after {
+	width: 0;
+}
+
+.page-list {
+	display: flex;
+	flex-direction: row;
+	margin-top: 40px;
+	padding: 50px;
+	justify-content: center;
+	align-items: center;
+	color: var(--text-lighter-color);
+	cursor: pointer;
+}
+.page-list div {
+	padding: 5px 7px;
+	font-size: 12px;
+	border: 1px solid var(--text-lighter-color);
+}
+.page-list div:hover {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+.page-list ol {
+	margin: 0 20px;
+}
+.page-list ol li {
+	display: inline-block;
+	padding: 10px 10px;
+}
+.page-list ol li:hover {
+	background-color: rgba(0, 0, 0, 0.1);
+	color: #111;
+	font-weight: 550;
+}
+.page-list ol li.active {
+	text-decoration-line: underline;
+	color: var(--primary-color);
+}
+.page-list ol li.active:hover {
+	background-color: unset;
+	color: unset;
+	font-weight: unset;
+}

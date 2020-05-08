@@ -1,0 +1,290 @@
+.page_songdetail {
+	position: fixed;
+	top: 100vh;
+	left: -100vh;
+	width: 0vw;
+	height: 0vh;
+	background-color: #fff;
+	overflow: auto;
+	-webkit-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease;
+	z-index: 300;
+	opacity: 0;
+}
+.page_songdetail.active {
+	top: 8vh;
+	left: 0;
+	width: 100vw;
+	height: 84vh;
+	opacity: 1;
+}
+.page_songdetail > .maincontainer {
+	width: 1000px;
+	margin: 50px auto;
+	position: relative;
+}
+.page_songdetail > .maincontainer > .compressbtn {
+	position: absolute;
+	top: 0;
+	left: 101%;
+	padding: 5px 10px;
+	border: 1px solid #dee2e3;
+	border-radius: 5px;
+	font-size: 1rem;
+	background-color: #f8f9fb;
+	cursor: pointer;
+}
+.page_songdetail > .maincontainer > .compressbtn:hover {
+	background-color: #f5f5f7;
+}
+.page_songdetail > .maincontainer > .lyricsection,
+.page_songdetail > .maincontainer > .discsection {
+	float: left;
+	height: 400px;
+}
+.page_songdetail > .maincontainer > .lyricsection {
+	width: 55%;
+}
+.page_songdetail > .maincontainer > .discsection {
+	width: 45%;
+	position: relative;
+}
+.page_songdetail > .maincontainer > .lyricsection > .lrcinfo {
+	height: 100px;
+}
+.page_songdetail > .maincontainer > .lyricsection > .lrcinfo > .info_song,
+.page_songdetail > .maincontainer > .lyricsection > .lrcinfo > .info_album {
+	max-width: 100%;
+	margin-bottom: 10px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.page_songdetail
+	> .maincontainer
+	> .lyricsection
+	> .lrcinfo
+	> .info_song
+	> .songname {
+	font-size: 1rem;
+}
+.page_songdetail
+	> .maincontainer
+	> .lyricsection
+	> .lrcinfo
+	> .info_song
+	> .label {
+	display: inline-block;
+	margin: 0 6px;
+	padding: 2px;
+	border: 1px solid #f00;
+	color: #f00;
+}
+.page_songdetail
+	> .maincontainer
+	> .lyricsection
+	> .lrcinfo
+	> .info_album
+	> span {
+	display: inline-block;
+	margin-right: 10px;
+}
+.page_songdetail > .maincontainer > .lyricsection > .lrccontainer {
+	height: calc(100% - 100px);
+	border-right: 1px solid #ccc;
+	overflow: auto;
+}
+
+.page_songdetail
+	> .maincontainer
+	> .lyricsection
+	> .lrccontainer::-webkit-scrollbar-thumb {
+	background-color: #d5d5d9;
+}
+.page_songdetail
+	> .maincontainer
+	> .lyricsection
+	> .lrccontainer::-webkit-scrollbar-thumb:hover {
+	background-color: #c1c2c6;
+}
+.page_songdetail
+	> .maincontainer
+	> .lyricsection
+	> .lrccontainer::-webkit-scrollbar {
+	background-color: #ededef;
+	border-radius: 10px;
+}
+
+.page_songdetail
+	> .maincontainer
+	> .lyricsection
+	> .lrccontainer
+	> .lrcbox
+	> .lrc {
+	padding: 10px 0;
+	color: #202016;
+}
+.page_songdetail
+	> .maincontainer
+	> .lyricsection
+	> .lrccontainer
+	> .lrcbox
+	> .lrc.current {
+	text-shadow: 0 0 3px #333;
+	color: #f9fcf5;
+}
+.page_songdetail > .maincontainer > .discsection > .disc_arc {
+	width: 320px;
+	height: 320px;
+	border-radius: 50%;
+	background-color: rgba(251, 251, 251, 0.08);
+	background-image: url("../images/disc.png");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 68%;
+	border: 3px solid rgba(251, 251, 251, 0.08);
+	overflow: hidden;
+}
+.page_songdetail > .maincontainer > .discsection > .disc_arc > .poster {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.page_songdetail > .maincontainer > .discsection > .disc_arc > .poster > img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.page_songdetail > .maincontainer > .discsection > .disc_needle {
+	position: absolute;
+	top: -72px;
+	left: 30%;
+	-webkit-transform: rotate(-40deg);
+	transform: rotate(-40deg);
+	transform-origin: 16px 16px;
+	-webkit-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	z-index: 6;
+}
+.page_songdetail > .maincontainer > .discsection > .disc_btns {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+.page_songdetail > .maincontainer > .discsection > .disc_btns > .btn {
+	display: inline-block;
+	margin: 0 5px;
+	padding: 5px 10px;
+	border: 1px solid #c1c5c6;
+	border-radius: 5px;
+	background-color: #f6fafb;
+	cursor: pointer;
+}
+.page_songdetail > .maincontainer > .discsection > .disc_btns > .btn:hover {
+	background-color: #f5f5f7;
+}
+/* animation */
+.page_songdetail > .maincontainer > .discsection > .disc_needle.play {
+	-webkit-transform: rotate(-8deg);
+	transform: rotate(-8deg);
+}
+.page_songdetail > .maincontainer > .discsection > .disc_arc {
+	-webkit-animation: rotateARC linear 20s infinite normal;
+	animation: rotateARC linear 20s infinite normal;
+	-webkit-animation-play-state: paused;
+	animation-play-state: paused;
+}
+@keyframes rotateARC {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+/* ------------------------plugins------------------------------- */
+/* plugins */
+/* backscreen */
+.g_backscreen {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.15);
+	z-index: 8;
+}
+/* tipsbox */
+.g_tipsbox {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	padding: 20px 30px;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	font-size: 1.5rem;
+	background-color: rgba(0, 0, 0, 0.8);
+	color: #f7f7f7;
+	z-index: 9;
+	opacity: 0;
+	-webkit-animation: hideTipsBox 1s ease;
+	animation: hideTipsBox 1s ease;
+}
+.g_tipsbox > .tip {
+	display: none;
+}
+.g_tipsbox > .tip.show {
+	display: block;
+}
+@-webkit-keyframes hideTipsBox {
+	0%,
+	80% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@keyframes hideTipsBox {
+	0%,
+	80% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+.g_blurbg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: #fff;
+	background-image: url("../images/poster001.jpg");
+	background-repeat: no-repeat;
+	background-position: center 0;
+	background-size: 60% 60%;
+	-webkit-filter: blur(100px);
+	filter: blur(100px);
+	z-index: -1;
+}
+.g_loadingbox {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	padding: 10px;
+	font-size: 1.2rem;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	border-radius: 8px;
+	background-color: rgba(0, 0, 0, 0.6);
+	color: #f7f7f7;
+}

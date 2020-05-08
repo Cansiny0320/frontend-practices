@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, 
+		user-scalable=0;"
+		/>
+		<link
+			rel="shortcut icon"
+			href="./images/icon.png"
+			type="image/x-icon"
+		/>
+		<link href="./css/all.css" rel="stylesheet" />
+		<link rel="stylesheet" href="./css/style.css" />
+		<link rel="stylesheet" href="./css/music-list.css" />
+		<link rel="stylesheet" href="./css/search.css" />
+		<link rel="stylesheet" href="./css/common.css" />
+		<link rel="stylesheet" href="./css/listtab.css">
+		<link rel="stylesheet" href="./css/lyric.css">
+		<script src="./libs/jquery-3.1.1.min.js"></script>
+		<title>网易云音乐</title>
+	</head>
+	<body>
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+		<div id="app">
+			<header>
+				<div class="left-content">
+					<div class="logo">
+						<svg
+							class="icon"
+							t="1588405575926"
+							class="icon"
+							viewBox="0 0 1024 1024"
+							version="1.1"
+							xmlns="http://www.w3.org/2000/svg"
+							p-id="1193"
+							width="30"
+							height="30"
+						>
+							<path
+								d="M350.37500029 62h323.24999942C774.50000029 62 811.99999971 72.50000029 846.87499971 91.99999971a204.37499971 204.37499971 0 0 1 85.12500058 85.12500058c19.50000029 34.875 29.99999971 72.37500029 29.99999971 173.25v323.24999942c0 100.125-10.50000029 136.50000029-29.99999971 173.25a204.37499971 204.37499971 0 0 1-85.12500058 85.12500058c-37.50000029 19.50000029-73.125 29.99999971-173.25 29.99999971H350.37500029C249.49999971 962 212.00000029 951.49999971 177.12500029 932.00000029A204.37499971 204.37499971 0 0 1 91.99999971 846.87499971C72.50000029 811.99999971 62 774.50000029 62 673.62499971V350.37500029C62 249.49999971 72.50000029 212.00000029 91.99999971 177.12500029A204.37499971 204.37499971 0 0 1 177.12500029 91.99999971C212.00000029 72.50000029 249.49999971 62 350.37500029 62z"
+								fill="#ffffff"
+								p-id="1194"
+							></path>
+							<path
+								d="M645.12500029 177.875a156.75000029 156.75000029 0 0 1 58.87499942 28.50000029 43.875 43.875 0 0 1 15.00000029 18.37499942 37.50000029 37.50000029 0 0 1-3.375 34.875 37.50000029 37.50000029 0 0 1-51.37499971 11.62500029c-4.12499971-2.62500029-7.12500029-6.37499971-11.25-8.62499971a67.87500029 67.87500029 0 0 0-37.50000029-12.375 37.50000029 37.50000029 0 0 0-24.00000029 12.375 26.62499971 26.62499971 0 0 0-7.12499942 23.99999942l13.87499942 52.12500029a200.99999971 200.99999971 0 0 1 94.5 27.74999971 269.62499971 269.62499971 0 0 1 72.37500029 64.87500058 225 225 0 0 1 37.50000029 74.99999971 249.37499971 249.37499971 0 0 1 9.37499942 86.625 275.24999971 275.24999971 0 0 1-14.99999942 72 281.99999971 281.99999971 0 0 1-112.5 137.99999971 299.99999971 299.99999971 0 0 1-124.12500029 43.50000058 310.5 310.5 0 0 1-91.125 0 299.99999971 299.99999971 0 0 1-164.25-87.00000029 322.49999971 322.49999971 0 0 1-85.12499971-297.37500029 316.50000029 316.50000029 0 0 1 189.74999971-225 50.24999971 50.24999971 0 0 1 42.00000029 2.25 37.50000029 37.50000029 0 0 1 15.37499971 35.25000029 37.50000029 37.50000029 0 0 1-24.00000029 30.75000029 241.49999971 241.49999971 0 0 0-153.37499942 193.5 245.99999971 245.99999971 0 0 0 13.5 119.25 242.25000029 242.25000029 0 0 0 112.5 129.74999942 219.375 219.375 0 0 0 102.375 24.75 255.75000029 255.75000029 0 0 0 85.87499942-15.37499971A203.625 203.625 0 0 0 714.87500029 662.00000029a166.5 166.5 0 0 0 14.24999971-33.75 187.49999971 187.49999971 0 0 0 0-104.25000058 158.24999971 158.24999971 0 0 0-47.62500029-73.125 208.50000029 208.50000029 0 0 0-31.5-22.87499942 120.375 120.375 0 0 0-31.5-12.00000058c7.49999971 29.99999971 15.75 60.00000029 23.625 90.37500029l3.75000029 21.75000029a127.87499971 127.87499971 0 0 1-103.12499971 129.74999942 122.625 122.625 0 0 1-90-16.875A135.37500029 135.37500029 0 0 1 399.5 572.00000029a163.87499971 163.87499971 0 0 1-9-49.12500058 169.49999971 169.49999971 0 0 1 28.50000029-103.5 187.49999971 187.49999971 0 0 1 104.24999971-72l-9-34.875a103.5 103.5 0 0 1 5.625-74.99999971 108.37500029 108.37500029 0 0 1 27-34.12500029A110.25 110.25 0 0 1 586.99999971 178.62499971a112.5 112.5 0 0 1 58.12500058-0.74999971z"
+								fill="#d81e06"
+								p-id="1195"
+								data-spm-anchor-id="a313x.7781069.0.i0"
+								class="selected"
+							></path>
+							<path
+								d="M490.24999971 451.62500029a87.75 87.75 0 0 0-22.12499971 41.99999942 112.5 112.5 0 0 0 0 43.50000058 64.87499971 64.87499971 0 0 0 24.75 40.5 47.62500029 47.62500029 0 0 0 37.50000029 7.12499942 52.49999971 52.49999971 0 0 0 42.37499971-48.74999942 135 135 0 0 0-3.375-17.25000029l-25.875-97.875a119.62500029 119.62500029 0 0 0-53.25000029 30.75000029z"
+								fill="#ffffff"
+								p-id="1196"
+							></path>
+						</svg>
+						<h3>网易云音乐</h3>
+					</div>
+					<div class="nav">
+						<div class="btns">
+							<button class="prev">
+								<i class="fas fa-chevron-left"></i>
+							</button>
+							<button class="next">
+								<i class="fas fa-chevron-right"></i>
+							</button>
+						</div>
+						<input
+							type="text"
+							class="search"
+							placeholder="搜索音乐，视频，歌词，电台"
+							onfocus="this.placeholder=''"
+							onblur="this.placeholder='搜索音乐，视频，歌词，电台'"
+						/>
+						<i class="fas fa-search search-icon"></i>
+					</div>
+				</div>
+				<div class="right-content">
+					<div class="uer-self">
+						<a class="user-avatar"></a>
+						<div class="user-info">
+							<div class="nickname"></div>
+							<i class="fas fa-caret-down"></i>
+						</div>
+						<div class="vip">开通VIP</div>
+					</div>
+					<div class="user-set">
+						<a href="#"><i class="fas fa-tshirt"></i></a>
+						<a class="letter" href="#"
+							><i class="fas fa-envelope"></i
+						></a>
+						<a href="#"><i class="fas fa-cog"></i></a>
+					</div>
+					<div class="window-control">
+						<a href="#"><i class="fas fa-external-link-alt"></i></a>
+						<a href="#"><i class="fas fa-minus"></i></a>
+						<a href="#"
+							><i class="fas fa-expand"></i>
+							<i
+								class="fas fa-compress"
+								style="display: none;"
+							></i
+						></a>
+						<a href="#"><i class="fas fa-times"></i></a>
+					</div>
+				</div>
+			</header>
+			<aside>
+				<div class="aside-wrapper">
+					<section class="recommend">
+						<div class="aside-title">推荐</div>
+						<div class="items">
+							<div class="item active">
+								<i class="fas fa-music"></i>
+								<p class="text">发现音乐</p>
+							</div>
+							<div class="item">
+								<i class="fas fa-satellite-dish"></i>
+								<p class="text">私人FM</p>
+							</div>
+							<div class="item">
+								<i class="fas fa-tv"></i>
+								<p class="text">LOOK直播</p>
+							</div>
+							<div class="item">
+								<i class="fas fa-video"></i>
+								<p class="text">视频</p>
+							</div>
+							<div class="item">
+								<i class="fas fa-user-friends"></i>
+								<p class="text">朋友</p>
+							</div>
+						</div>
+					</section>
+					<section class="my-music">
+						<div class="aside-title">我的音乐</div>
+						<div class="items">
+							<div class="item">
+								<i class="fas fa-record-vinyl"></i>
+								<p class="text">本地音乐</p>
+							</div>
+							<div class="item">
+								<i class="fas fa-download"></i>
+								<p class="text">下载管理</p>
+							</div>
+							<div class="item">
+								<i class="fas fa-cloud"></i>
+								<p class="text">我的音乐云盘</p>
+							</div>
+							<div class="item">
+								<i class="fas fa-broadcast-tower"></i>
+								<p class="text">我的电台</p>
+							</div>
+							<div class="item">
+								<i class="fas fa-star"></i>
+								<p class="text">我的收藏</p>
+							</div>
+						</div>
+					</section>
+					<section class="created-music-list">
+						<div class="aside-title">创建的歌单
+	
+						</div>
+						<button class="creat">
+							<i class="fas fa-plus"></i>
+						</button>
+						<button class="details">
+							<i class="fas fa-angle-right"></i>
+						</button>
+						<div class="list">
+						<div class="item">
+							<i class="fas fa-heart"></i>
+							<span class="title">我喜欢的音乐</span>
+						</div>
+					</div>
+					</section>
+					<section class="colleced-music-list">
+						<div class="aside-title">收藏的歌单</div>
+						<button class="details">
+							<i class="fas fa-angle-right"></i>
+						</button>
+					</section>
+				</div>
+				
+			</aside>
+			<div class="content-wrapper main-wrapper active">
+				<nav>
+					<a href="#" class="active">个性推荐</a>
+					<a href="#">歌单</a>
+					<a href="#">主播电台</a>
+					<a href="#">排行榜</a>
+					<a href="#">歌手</a>
+					<a href="#">最新音乐</a>
+				</nav>
+				<div class="wrapper style-recommend active">
+					<section class="slider-container">
+						<div class="slider-content mask">
+							<!-- <div class="slider slider1"></div>
+							<div class="slider slider2"></div>
+							<div class="slider slider3"></div>
+							<div class="slider slider4"></div> -->
+							<div id="prev">
+								<i class="fas fa-chevron-left"></i>
+							</div>
+							<div id="next">
+								<i class="fas fa-chevron-right"></i>
+							</div>
+						</div>
+						<div class="dots"></div>
+					</section>
+					<section class="recommend-music-list">
+						<div class="wrapper-title">
+							<h3 class="title">推荐歌单</h3>
+							<div class="more">更多></div>
+						</div>
+						<div class="content">
+							<div class="item">
+								<div class="item-cover">
+									<img />
+								</div>
+								<div class="item-title"></div>
+							</div>
+							<div class="item">
+								<div class="item-cover">
+									<img />
+								</div>
+								<div class="item-title"></div>
+							</div>
+							<div class="item">
+								<div class="item-cover">
+									<img />
+								</div>
+								<div class="item-title"></div>
+							</div>
+							<div class="item">
+								<div class="item-cover">
+									<img />
+								</div>
+								<div class="item-title"></div>
+							</div>
+							<div class="item">
+								<div class="item-cover">
+									<img />
+								</div>
+								<div class="item-title"></div>
+							</div>
+							<div class="item">
+								<div class="item-cover">
+									<img />
+								</div>
+								<div class="item-title"></div>
+							</div>
+							<div class="item">
+								<div class="item-cover">
+									<img />
+								</div>
+								<div class="item-title"></div>
+							</div>
+							<div class="item">
+								<div class="item-cover">
+									<img />
+								</div>
+								<div class="item-title"></div>
+							</div>
+							<div class="item">
+								<div class="item-cover">
+									<img />
+								</div>
+								<div class="item-title"></div>
+							</div>
+							<div class="item">
+								<div class="item-cover">
+									<img />
+								</div>
+								<div class="item-title"></div>
+							</div>
+						</div>
+					</section>
+				</div>
+				<div class="wrapper music-list">
+					<div class="select-btn">
+						<span class="style">全部歌单</span>
+						<i class="fas fa-chevron-down"></i>
+					</div>
+					<div class="tag-nav">
+						<span class="title">热门标签：</span>
+						<span class="tag">华语</span>
+						<span class="tag">流行</span>
+						<span class="tag">摇滚</span>
+						<span class="tag">民谣</span>
+						<span class="tag">电子</span>
+						<span class="tag">另类/独立</span>
+						<span class="tag">轻音乐</span>
+						<span class="tag">综艺</span>
+						<span class="tag">影视原声</span>
+						<span class="tag">ACG</span>
+					</div>
+					<div class="content">
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+						<div class="item">
+							<div class="item-cover">
+								<img src="" alt="" />
+							</div>
+							<div class="item-title"></div>
+						</div>
+					</div>
+					<div class="page-list">
+						<div class="page-prev">
+							<i class="fas fa-chevron-left"></i>
+						</div>
+						<ol>
+							<li class="active">1</li>
+							<li>2</li>
+							<li>3</li>
+							<li>4</li>
+							<li>5</li>
+						</ol>
+						<div class="page-next">
+							<i class="fas fa-chevron-right"></i>
+						</div>
+					</div>
+				</div>
+				<div class="wrapper"></div>
+				<div class="wrapper"></div>
+				<div class="wrapper"></div>
+				<div class="wrapper"></div>
+			</div>
+			<div class="content-wrapper search-wrapper">
+				<div class="search-nav">
+					<div class="active">单曲</div>
+					<div>歌手</div>
+					<div>专辑</div>
+					<div>视频</div>
+					<div>歌单</div>
+					<div>歌词</div>
+					<div>主播电台</div>
+					<div>用户</div>
+				</div>
+				<div class="song-list">
+					<ol></ol>
+				</div>
+			</div>
+			 <!--歌单  -->
+			 <div class="page_main R_page content-wrapper " id="pageMain">
+				<div class="main_container">
+					<div class="listcontainer">
+						<div class="listinfo clearfix">
+							<div class="info_listpic">
+								<img src="./src/images/temp_pic001.jpg" alt="" id="playlist_listPic" />
+							</div>
+							<div class="info_detailtext">
+								<div class="playinfo">
+									<span><i class="fas fa-music" aria-hidden="true"></i>&nbsp;&nbsp;<span id="playlist_trackCount">0</span></span>
+									<span><i class="fas fa-play-circle" aria-hidden="true"></i>&nbsp;&nbsp;<span id="playlist_playCount">0</span></span>
+								</div>
+								<div class="detail_name">
+									<span class="listtag">歌单</span>
+									<span class="listname" id="playlist_listName">歌单名称</span>
+								</div>
+								<div class="detail_time">
+									<span class="userpic"><a href="javascript:void(0);"><img src="./src/images/user_face.png" alt="" id="playlist_userFace" /></a></span>
+									<span class="username"><a href="javascript:void(0);" id="playlist_userName">user008</a></span>
+									<span class="createtime" id="playlist_createTime">1970-01-01</span>
+									<span>创建</span>
+								</div>
+								<div class="detail_btns">
+									<span class="btn playall"><i class="fas fa-play-circle" aria-hidden="true" style="color:#c52f30;"></i>&nbsp;&nbsp;播放全部</span>
+									<!--
+									--><span class="btn plus"><i class="fas fa-plus" aria-hidden="true"></i></span>
+									<span class="btn playall"><i class="fas fa-folder" aria-hidden="true"></i>&nbsp;&nbsp;收藏(0)</span>
+									<span class="btn playall"><i class="fas fa-share-square" aria-hidden="true"></i>&nbsp;&nbsp;分享(0)</span>
+									<span class="btn playall"><i class="fas fa-download" aria-hidden="true"></i>&nbsp;&nbsp;下载全部</span>
+								</div>
+							</div>
+						</div>
+						<div class="listtab">
+							<div class="tabbtns clearfix">
+								<label class="label_btn active" for="music" class="active">歌单列表</label>
+								<label class="label_btn" for="comment">评论(0)</label>
+								<label class="label_btn" for="follower">收藏者</label>
+							
+							</div>
+							<!-- musiclist -->
+							<input type="radio" id="music" name="tablist" checked="" />
+							<div class="tabitem musiclist">
+								<table>
+									<thead>
+										<tr>
+											<th>&nbsp;&nbsp;</th>
+											<th>操作</th>
+											<th>音乐标题</th>
+											<th>歌手</th>
+											<th>专辑</th>
+											<th>时长</th>
+										</tr>
+									</thead>
+									<tbody class="infolist" id="infoList_playlist">
+										<!-- 模板 -->
+										<!-- <tr>
+											<td class="index">01</td>
+											<td><i class="fas fa-heart" aria-hidden="true"></i>&nbsp;
+												<i class="fas fa-download" aria-hidden="true"></i>
+											</td>
+											<td>-SONGNAME-</td>
+											<td>-SINGER-</td>
+											<td>-ALBUM-</td>
+											<td>00:00</td>
+										</tr> -->
+									</tbody>
+									</tfoot>
+								</table>
+							</div>
+							<!-- comments -->
+							<input type="radio" id="comment" name="tablist" />
+							<div class="tabitem commentlist">
+								<div class="commentbox clearfix">
+									<textarea name="" id="" cols="30" rows="10" maxlength="140"></textarea>
+									<span class="wordslen">140</span>
+									<a href="javascript:void(0);" class="btn emoji"><i class="fas fa-smile" aria-hidden="true"></i></a>
+									<a href="javascript:void(0);" class="btn at"><i class="fas fa-at" aria-hidden="true"></i></a>
+									<a href="javascript:void(0);" class="btn comment">评论</a>
+								</div>
+								<div class="commenttable">
+									<div class="comment new">
+										<div class="title">最新评论(0)</div>
+										<div class="content">
+											<p><span class="username"><a href="javascript:void(0);">用户008</a></span>：<span class="usersay">Lorem ipsum
+													dolor sit amet, consectetur adipisicing elit. Laborum, earum cupiditate facere suscipit tenetur quia ab
+													quasi ea eligendi, neque esse quidem. Eius, quasi! Odit veniam repellat amet, accusamus voluptatem.</span></p>
+											<div class="btngroups clearfix">
+												<span class="time">2016年12月31日 10:35:06</span>
+												<span class="btn">
+													<a href="javascript:void(0);" class="btn_report">举报</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+													<a href="javascript:void(0);" class="btn_support"><i class="fas fa-thumbs-up" aria-hidden="true"></i>(0)</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+													<a href="javascript:void(0);" class="btn_share">分享</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+													<a href="javascript:void(0);" class="btn_reply">回复</a>
+												</span>
+											</div>
+											<div class="userface"><a href="javascript:void(0);"><img src="./src/images/user_face.png" alt="" /></a></div>
+										</div>
+										<div class="content">
+											<p><span class="username"><a href="javascript:void(0);">用户008</a></span>：<span class="usersay">Lorem ipsum
+													dolor sit amet, consectetur adipisicing elit.</span></p>
+											<div class="btngroups clearfix">
+												<span class="time">2016年12月31日 10:35:06</span>
+												<span class="btn">
+													<a href="javascript:void(0);" class="btn_report">举报</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+													<a href="javascript:void(0);" class="btn_support"><i class="fas fa-thumbs-up" aria-hidden="true"></i>(0)</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+													<a href="javascript:void(0);" class="btn_share">分享</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+													<a href="javascript:void(0);" class="btn_reply">回复</a>
+												</span>
+											</div>
+											<div class="userface"><a href="javascript:void(0);"><img src="./src/images/user_face.png" alt="" /></a></div>
+										</div>
+									</div>
+									<div class="comment prefect">
+										<div class="title">精彩评论(0)</div>
+										<div class="content">
+											<p style="color:#ccc;">-- 暂无评论 --</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- followers -->
+							<input type="radio" id="follower" name="tablist" />
+							<div class="tabitem followerlist">
+								<figure>
+									<a href="javascript:void(0);"><img src="./src/images/user_face.png" alt="" /></a>
+									<figcaption><a href="javascript:void(0);">-USERNAME-</a></figcaption>
+								</figure>
+								<figure>
+									<a href="javascript:void(0);"><img src="./src/images/user_face.png" alt="" /></a>
+									<figcaption><a href="javascript:void(0);">-USERNAME-</a></figcaption>
+								</figure>
+								<figure>
+									<a href="javascript:void(0);"><img src="./src/images/user_face.png" alt="" /></a>
+									<figcaption><a href="javascript:void(0);">-USERNAME-</a></figcaption>
+								</figure>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 歌词页 -->
+			<div class="page_songdetail" id="pageSongDetail">
+				<!-- 模糊背景 -->
+				<div class="g_blurbg" id="bgBlur" style="background-image:url('./src/images/al8.png');"></div>
+				<div class="maincontainer clearfix">
+					<div class="compressbtn" id="btnCompressPlayBox" title="收起音乐详情页">
+						<i class="fas fa-compress" aria-hidden="true"></i>
+					</div>
+					<div class="discsection">
+						<div class="disc_needle" id="discNeedle"><img src="./src/images/needle.png" alt=""></div>
+						<div class="disc_arc" id="bgDisc" style="background-image:url('./src/images/al8.png');">
+							<div class="poster"><img src="./src/images/disc-o.png" alt=""></div>
+						</div>
+						<div class="disc_btns">
+							<span class="btn playall"><i class="fas fa-heart" aria-hidden="true"></i>&nbsp;&nbsp;喜欢</span>
+							<span class="btn playall"><i class="fas fa-folder" aria-hidden="true"></i>&nbsp;&nbsp;收藏</span>
+							<span class="btn playall"><i class="fas fa-download" aria-hidden="true"></i>&nbsp;&nbsp;下载</span>
+							<span class="btn playall"><i class="fas fa-share-square" aria-hidden="true"></i>&nbsp;&nbsp;分享</span>
+						</div>
+					</div>
+					<div class="lyricsection">
+						<div class="lrcinfo" id="songDetail">
+							<p class="info_song"><span class="songname">--SONGNAME--</span><span class="label mv">MV</span><span class="label quality">320k</span></p>
+							<p class="info_album">
+								<span class="album">专辑：<span class="albumname">--ALBUMNAME--</span>
+								</span>
+								<span class="singer">歌手：<span class="singersname">--ALBUMNAME--</span>
+								</span>
+								
+							</p>
+						</div>
+						<div class="lrccontainer" id="lrcContainer">
+							<div class="lrcbox" id="lrcBox">
+								<!-- <p>暂无歌词</p> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer>
+				<section class="now-play-song">
+					<div class="cover">
+						<div class="mask">
+							<i class="fas fa-arrow-down leftdown"></i>
+							<i class="fas fa-arrow-up rightup"></i>
+						</div>
+					</div>
+					<div class="song-info">
+						<p class="song-name"></p>
+						<p class="singer"></p>
+					</div>
+					<div class="user-action">
+						<i class="fas fa-heart stared"></i>
+						<i class="fas fa-external-link-alt"></i>
+					</div>
+				</section>
+				<div class="play-control">
+					<div class="prev-song">
+						<i class="fas fa-step-backward"></i>
+					</div>
+					<div class="play-pause">
+						<i class="fas fa-play"></i>
+					</div>
+					<div class="play-pause" style="display: none;">
+						<i class="fas fa-pause"></i>
+					</div>
+					<div class="next-song">
+						<i class="fas fa-step-forward"></i>
+					</div>
+				</div>
+				<div class="song-control">
+					<span class="now-play-time">00:00</span>
+					<input
+						type="range"
+						id="progress-bar"
+						min="0"
+						max="1000"
+						value="0"
+					/>
+					<span class="total-time">00:00</span>
+					<audio></audio>
+				</div>
+
+				<div class="user-control">
+					<div class="volumn-control">
+						<i class="fas fa-volume-up unmuted"></i>
+						<i
+							class="fas fa-volume-mute muted"
+							style="display: none;"
+						></i>
+					</div>
+					<input
+						type="range"
+						id="volumn-bar"
+						min="0"
+						max="100"
+						value="100"
+					/>
+					<div class="play-range"><i class="fas fa-bars"></i></div>
+					<div class="audio-quality">标准</div>
+					<div><i class="fas fa-blog"></i></div>
+					<div class="song-words">词</div>
+					<div><i class="fas fa-list-ul"></i></div>
+				</div>
+			</footer>
+		</div>
+		<script src="./js/utils.js"></script>
+		<script src="./js/lyric.js"></script>
+		<script src="./js/MySlider.js"></script>
+		<script src="./js/audioPlayer.js"></script>
+		<script src="./js/search.js"></script>
+		<script src="./js/user.js"></script>
+		<script src="./js/music-list.js"></script>
+		<script src="./js/changewrapper.js"></script>
+		<script src="./js/index.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,59 @@
+::-webkit-scrollbar {
+	width: 10px;
+	background-color: #fff;
+}
+::-webkit-scrollbar-thumb {
+	background-color: var(--scroll-bar-color);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: var(--scroll-bar-color-hover);
+}
+
+aside::-webkit-scrollbar {
+	background-color: #f5f5f7;
+}
+
+.content-wrapper {
+	color: #fafafa;
+}
+
+ol {
+	list-style: none;
+}
+
+.content .item {
+	max-height: 250px;
+	cursor: pointer;
+}
+.content .item .item-cover {
+	height: 10vw;
+	width: 10vw;
+}
+
+.item-cover img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.content-wrapper.active {
+	display: block;
+}
+
+.clearfix {
+	zoom: 1;
+}
+.clearfix::after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.red {
+	color: red !important;
+}

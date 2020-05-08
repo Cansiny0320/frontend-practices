@@ -1,0 +1,295 @@
+.R_page {
+	padding: 0;
+	color: #000;
+	height: 100%;
+	box-sizing: border-box;
+}
+.R_page > .main_container {
+	height: 100%;
+	overflow-y: scroll;
+}
+.listcontainer {
+	width: 100%;
+	overflow: hidden;
+}
+.listcontainer > .listinfo {
+	padding: 20px 40px;
+	margin-bottom: 30px;
+}
+.listcontainer > .listinfo > .info_listpic {
+	float: left;
+	width: 200px;
+	margin-right: 40px;
+	position: relative;
+}
+.listcontainer > .listinfo > .info_listpic > img {
+	width: 100%;
+	height: auto;
+}
+.listcontainer > .listinfo > .info_detailtext {
+	float: left;
+	width: calc(100% - 200px - 40px);
+	position: relative;
+}
+.listcontainer > .listinfo > .info_detailtext > .playinfo {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.listcontainer > .listinfo > .info_detailtext > .playinfo > span {
+	margin: 0 5px;
+	color: #646464;
+}
+.listcontainer > .listinfo > .info_detailtext > .detail_name > .listtag {
+	display: inline-block;
+	padding: 5px 10px;
+	background-color: #c52f30;
+	color: #f1f1f1;
+}
+.listcontainer > .listinfo > .info_detailtext > .detail_name > .listname {
+	margin: 0 5px;
+	font-size: 1rem;
+}
+.listcontainer > .listinfo > .info_detailtext > .detail_time {
+	margin: 15px 0;
+	padding-left: 50px;
+	position: relative;
+}
+.listcontainer > .listinfo > .info_detailtext > .detail_time > span {
+	margin: 0 5px;
+}
+.listcontainer > .listinfo > .info_detailtext > .detail_time > .userpic {
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 30px;
+	height: 30px;
+	border: 1px solid #dadadc;
+	border-radius: 50%;
+	-webkit-transform: translate(0, -50%);
+	transform: translate(0, -50%);
+	overflow: hidden;
+}
+.listcontainer
+	> .listinfo
+	> .info_detailtext
+	> .detail_time
+	> .userpic
+	> a
+	> img {
+	width: 100%;
+	height: auto;
+}
+.listcontainer > .listinfo > .info_detailtext > .detail_btns > .btn {
+	display: inline-block;
+	margin: 0 5px;
+	padding: 5px 10px;
+	border: 1px solid #dadadc;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.listcontainer > .listinfo > .info_detailtext > .detail_btns > .btn.playall {
+	margin-right: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.listcontainer > .listinfo > .info_detailtext > .detail_btns > .btn.plus {
+	margin-left: 0;
+	border-left: none;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+.listcontainer > .listinfo > .info_detailtext > .detail_btns > .btn:hover {
+	background-color: #f5f5f7;
+}
+.listcontainer > .listinfo > .info_detailtext > .detail_btns > .btn > .fa {
+	font-size: 0.8rem;
+}
+.listcontainer > .listtab > .tabbtns {
+	padding: 0 40px;
+	border-bottom: 1px solid #c52f30;
+}
+.listcontainer > .listtab > .tabbtns > label {
+	display: inline-block;
+	padding: 0.5em 2em;
+	margin: 0 3px;
+	border: 1px solid #dadadc;
+	border-bottom: none;
+	cursor: pointer;
+}
+.listcontainer > .listtab > .tabbtns > label:hover {
+	background-color: #e3e3e5;
+}
+.listcontainer > .listtab > .tabbtns > label.active {
+	background-color: #c52f30;
+	color: #f1f1f1;
+	border-color: #c52f30;
+}
+.listcontainer > .listtab > .tabbtns > .menu_search {
+	float: right;
+}
+.listcontainer > .listtab > .tabbtns > .menu_search > .search_inp {
+	background-color: #fff;
+	color: #666;
+	border: 1px solid #dadadc;
+}
+.listcontainer > .listtab > .tabitem {
+	display: none;
+}
+.listcontainer > .listtab > input {
+	position: fixed;
+	top: 0;
+	left: -9999px;
+}
+/* "+" 相邻兄弟选择器  "~" 通用兄弟选择器 */
+.listcontainer > .listtab > input:checked + .tabitem {
+	display: block;
+}
+.musiclist > table {
+	width: 100%;
+	text-align: left;
+	vertical-align: middle;
+	background-color: #fafafa;
+	color: #313131;
+}
+.musiclist > table td,
+.musiclist > table th {
+	padding-left: 15px;
+	max-width: 200px;
+	height: 2rem;
+	font-weight: lighter;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.musiclist > table th {
+	border-right: 1px solid #e0e0e0;
+	box-sizing: border-box;
+	color: #6d7172;
+}
+.musiclist > table th:last-of-type {
+	border: none;
+}
+.musiclist > table td > img {
+	width: 100%;
+	height: auto;
+}
+.musiclist > table > tbody > tr:nth-of-type(odd) {
+	background-color: #f5f5f7;
+}
+.musiclist > table > tbody > tr:hover,
+.musiclist > table > tbody > tr.active {
+	background-color: #e3e3e5;
+}
+.musiclist > table > tbody > tr > td:first-of-type {
+	padding-right: 10px;
+	text-align: right;
+	color: #9c9c9c;
+}
+.musiclist > table > tbody > tr > td.index.active {
+	font-size: 0.8rem;
+	color: #c52f30;
+}
+.followerlist {
+	padding: 20px 50px;
+}
+.followerlist > figure {
+	display: inline-block;
+	width: 80px;
+	margin: 10px 20px;
+	text-align: center;
+}
+.followerlist > figure > a > img {
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+.followerlist > figure > figcaption {
+	width: 100%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 0.6rem;
+	overflow: hidden;
+}
+.commentlist {
+	padding: 15px 40px;
+}
+.commentlist > .commentbox {
+	width: 100%;
+	padding: 10px 10px 15px 10px;
+	background-color: #f0f0f2;
+	position: relative;
+}
+.commentlist > .commentbox > textarea {
+	margin-bottom: 10px;
+	padding: 5px 10px;
+	width: 100%;
+	height: 80px;
+	resize: none;
+	outline: none;
+	border: 1px solid #e3e3e5;
+	background-color: #fff;
+	box-sizing: border-box;
+}
+.commentlist > .commentbox > .wordslen {
+	position: absolute;
+	top: 66px;
+	right: 15px;
+	color: #8b8b86;
+}
+.commentlist > .commentbox > .btn.comment {
+	float: right;
+	display: block;
+	padding: 5px 10px;
+	border: 1px solid #e3e3e5;
+	border-radius: 5px;
+	background-color: #fdfdfd;
+}
+.commentlist > .commentbox > .btn.emoji,
+.commentlist > .commentbox > .btn.at {
+	float: left;
+	margin-right: 10px;
+	font-size: 1rem;
+}
+.commentlist > .commenttable {
+	margin: 30px 0;
+}
+.commentlist > .commenttable > .comment > .title {
+	margin: 10px 0;
+	font-size: 0.8rem;
+	color: #a5a4a9;
+}
+.commentlist > .commenttable > .comment > .content {
+	padding: 1em 0 1em 60px;
+	border-top: 1px solid #eee;
+	position: relative;
+}
+.commentlist > .commenttable > .comment > .content > .userface {
+	position: absolute;
+	top: 1em;
+	left: 0;
+	width: 40px;
+	height: 40px;
+}
+.commentlist > .commenttable > .comment > .content > .userface > a > img {
+	width: 100%;
+	height: auto;
+}
+.commentlist > .commenttable > .comment > .content > p {
+	margin-bottom: 1em;
+}
+.commentlist > .commenttable > .comment > .content > p > .username > a {
+	color: #0b75c3;
+}
+.commentlist > .commenttable > .comment > .content > p > .usersay {
+	color: #343434;
+}
+.commentlist > .commenttable > .comment > .content > .btngroups > .time {
+	float: left;
+	color: #939393;
+}
+.commentlist > .commenttable > .comment > .content > .btngroups > .btn {
+	float: right;
+}
