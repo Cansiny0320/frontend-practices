@@ -1,0 +1,275 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+	font-family: Helvetica, "Microsoft YaHei";
+}
+
+body {
+	width: 100%;
+	height: 100vh;
+}
+
+#app {
+	max-width: 500px;
+	margin: 0 auto;
+	background-color: #f4f4f4;
+}
+
+/* S header */
+header {
+	width: 100%;
+	color: snow;
+	background: linear-gradient(180deg, #50ade8, #7ae0fa);
+}
+header .header__top {
+	width: 100%;
+	padding: 10px;
+}
+header .header__top .control {
+	display: flex;
+	justify-content: space-between;
+}
+header .header__top button {
+	color: snow;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	font-size: 16px;
+	outline: none;
+}
+
+header .header__top .air-quality {
+	display: inline-block;
+	padding: 8px 15px;
+	margin-top: 28px;
+	border-radius: 8px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+	text-align: center;
+	font-size: 12px;
+}
+
+header .header__bottom {
+	width: 100%;
+	position: relative;
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 100px 180px;
+	row-gap: 50px;
+	justify-content: center;
+	justify-items: center;
+	text-align: center;
+	background-image: url(../images/bg04.png);
+	background-repeat: no-repeat;
+	background-position: -25px -90px;
+	background-size: 110%;
+	z-index: 20;
+}
+
+.header__bottom .bg1,
+.header__bottom .bg2 {
+	height: 240px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.header__bottom .bg1 {
+	background-position: -30px 85px;
+	background-image: url(../images/bg03.png);
+	background-repeat: no-repeat;
+	background-size: 110%;
+	z-index: 5;
+}
+
+.header__bottom .bg2 {
+	background-image: url(../images/bg02.png);
+	background-repeat: no-repeat;
+	z-index: 10;
+	background-size: 110%;
+	background-position: bottom;
+}
+.weather-info {
+	display: grid;
+	grid-template-columns: 100%;
+	row-gap: 5px;
+}
+.weather-info .weather__temperature {
+	font-size: 50px;
+}
+
+.weather-info .weather__type {
+	font-size: 20px;
+	margin-left: -15px;
+}
+
+.weather-info .weather__extra {
+	margin-left: -10px;
+}
+
+/* E header */
+
+/* S 今天和明天的天气 */
+.recent-weather {
+	color: #434343;
+	background-color: #fff;
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-row: 180px;
+}
+
+.recent-weather .recent-weather__wrapper {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 20px 20px;
+	row-gap: 10px;
+	align-items: center;
+	padding: 20px;
+	font-size: 14px;
+}
+.recent-weather__wrapper:nth-child(1)::after {
+	content: "";
+	left: 100%;
+	display: block;
+	height: 50%;
+	width: 3px;
+	background-color: #f8f8f8;
+	position: absolute;
+}
+.recent-weather__wrapper .icon,
+.recent-weather__wrapper .temperature {
+	justify-self: flex-end;
+}
+
+.recent-weather__wrapper .icon img {
+	height: 20px;
+	object-fit: cover;
+}
+/* E 今天和明天的天气  */
+
+/* S 24小时天气 */
+.full-day-weather {
+	width: 100%;
+	margin-top: 10px;
+	padding: 20px;
+	display: grid;
+	grid-template-columns: repeat(26, 50px);
+	grid-template-rows: 100px;
+	column-gap: 20px;
+	background-color: #fff;
+	overflow-x: scroll;
+}
+
+.full-day-weather::-webkit-scrollbar {
+	display: none;
+}
+.full-day-weather .item {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+.full-day-weather .item:last-child {
+	margin-right: -20px;
+}
+.full-day-weather .item .item__weather-type-icon img {
+	height: 20px;
+	object-fit: cover;
+}
+/* E 24小时天气 */
+
+/* S 一周天气 */
+.full-week-weather {
+	width: 100%;
+	margin-top: 20px;
+	background-color: #fff;
+	padding: 20px;
+	overflow-x: scroll;
+}
+.full-week-weather::-webkit-scrollbar {
+	display: none;
+}
+.weather-info-top,
+.weather-info-bottom {
+	display: grid;
+	grid-template-columns: repeat(8, 50px);
+	column-gap: 20px;
+}
+.full-week-weather .item:last-child {
+	margin-right: -20px;
+}
+.full-week-weather .item {
+	display: grid;
+	grid-template-rows: repeat(3, 1fr);
+	justify-items: center;
+	align-items: center;
+	text-align: center;
+}
+.full-week-weather .item .item__weather-type-icon img {
+	height: 30px;
+	object-fit: cover;
+}
+
+.full-week-weather .weather-chart {
+	position: relative;
+	height: 140px;
+	width: 540px;
+}
+
+/* E 一周天气 */
+
+/* S 生活建议 */
+.life-advice {
+	height: 200px;
+	margin-top: 20px;
+	width: 100%;
+	background-color: #fff;
+	position: relative;
+}
+.life-advice .slider {
+	width: 100%;
+	overflow-x: scroll;
+	position: absolute;
+	left: 0;
+	display: grid;
+	grid-template-columns: repeat(2, 500px);
+	grid-template-rows: 200px;
+}
+.life-advice .slider::-webkit-scrollbar {
+	display: none;
+}
+.slider .slider__slide {
+	display: grid;
+	grid-template-columns: repeat(4, 125px);
+	grid-template-rows: repeat(2, 1fr);
+	justify-items: center;
+	align-items: center;
+	text-align: center;
+}
+.slider .slider__slide .item {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	border: 1px solid #eaeaea;
+}
+
+.slider__slide .item .item__icon img {
+	width: 40px;
+	object-fit: cover;
+}
+/* E 生活建议 */
+
+/* S footer  */
+footer {
+	width: 100%;
+	padding: 20px 50px;
+	text-align: center;
+}
+
+/* E footer  */

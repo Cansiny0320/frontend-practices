@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.0/css/all.css"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+		<title>腾讯天气</title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- S header -->
+			<header>
+				<div class="header__top">
+					<div class="control">
+						<button class="back">
+							<i class="fas fa-chevron-left"></i>
+						</button>
+						<button class="location">
+							<i class="fas fa-map-marker-alt"></i>
+							<span class="location__city"></span>
+						</button>
+						<button class="share">
+							<i class="fas fa-share-square"></i>
+						</button>
+					</div>
+					<div class="air-quality">
+						<div class="air-quality__number"></div>
+						<div class="air-quality__type"></div>
+					</div>
+				</div>
+				<div class="header__bottom">
+					<div class="weather-info">
+						<div class="weather__temperature"></div>
+						<div class="weather__type"></div>
+						<div class="weather__extra">
+							<div class="weather__extra__humidity active"></div>
+							<div
+								class="weather__extra__wind"
+								style="display: none;"
+							></div>
+						</div>
+					</div>
+					<div class="tips">天太热了，吃个西瓜~</div>
+
+					<div class="bg1"></div>
+					<div class="bg2"></div>
+				</div>
+			</header>
+			<!-- E header -->
+
+			<!-- S 今天和明天的天气 -->
+			<section class="recent-weather">
+				<div class="recent-weather__today recent-weather__wrapper">
+					<div class="day">今天</div>
+					<div class="temperature"></div>
+					<div class="weather-type"></div>
+					<div class="icon">
+						<img src="./images/01.png" />
+					</div>
+				</div>
+				<div class="recent-weather__tomorrow recent-weather__wrapper">
+					<div class="day">明天</div>
+					<div class="temperature"></div>
+					<div class="weather-type"></div>
+					<div class="icon">
+						<img src="./images/01.png" />
+					</div>
+				</div>
+			</section>
+			<!-- E 今天和明天的天气 -->
+
+			<!-- S 24小时天气 -->
+			<section class="full-day-weather">
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+				<div class="item">
+					<div class="item__time">17:00</div>
+					<div class="item__weather-type-icon">
+						<img src="./images/01.png" />
+					</div>
+					<div class="item__temperature">34°</div>
+				</div>
+			</section>
+			<!-- E 24小时天气 -->
+
+			<!-- S 一周天气 -->
+			<section class="full-week-weather">
+				<div class="weather-info-top">
+					<div class="item">
+						<div class="item__date">
+							<div class="date__week">昨天</div>
+							<div class="date__detail">05/17</div>
+						</div>
+						<div class="item__weather-type">多云</div>
+						<div class="item__weather-type-icon">
+							<img src="images/01.png" />
+						</div>
+					</div>
+					<div class="item">
+						<div class="item__date">
+							<div class="date__week">昨天</div>
+							<div class="date__detail">05/17</div>
+						</div>
+						<div class="item__weather-type">多云</div>
+						<div class="item__weather-type-icon">
+							<img src="images/01.png" />
+						</div>
+					</div>
+					<div class="item">
+						<div class="item__date">
+							<div class="date__week">昨天</div>
+							<div class="date__detail">05/17</div>
+						</div>
+						<div class="item__weather-type">多云</div>
+						<div class="item__weather-type-icon">
+							<img src="images/01.png" />
+						</div>
+					</div>
+					<div class="item">
+						<div class="item__date">
+							<div class="date__week">昨天</div>
+							<div class="date__detail">05/17</div>
+						</div>
+						<div class="item__weather-type">多云</div>
+						<div class="item__weather-type-icon">
+							<img src="images/01.png" />
+						</div>
+					</div>
+					<div class="item">
+						<div class="item__date">
+							<div class="date__week">昨天</div>
+							<div class="date__detail">05/17</div>
+						</div>
+						<div class="item__weather-type">多云</div>
+						<div class="item__weather-type-icon">
+							<img src="images/01.png" />
+						</div>
+					</div>
+					<div class="item">
+						<div class="item__date">
+							<div class="date__week">昨天</div>
+							<div class="date__detail">05/17</div>
+						</div>
+						<div class="item__weather-type">多云</div>
+						<div class="item__weather-type-icon">
+							<img src="images/01.png" />
+						</div>
+					</div>
+					<div class="item">
+						<div class="item__date">
+							<div class="date__week">昨天</div>
+							<div class="date__detail">05/17</div>
+						</div>
+						<div class="item__weather-type">多云</div>
+						<div class="item__weather-type-icon">
+							<img src="images/01.png" />
+						</div>
+					</div>
+					<div class="item">
+						<div class="item__date">
+							<div class="date__week">昨天</div>
+							<div class="date__detail">05/17</div>
+						</div>
+						<div class="item__weather-type">多云</div>
+						<div class="item__weather-type-icon">
+							<img src="images/01.png" />
+						</div>
+					</div>
+				</div>
+				<div class="weather-chart">
+					<canvas id="chart" width="540" height="140"></canvas>
+				</div>
+				<div class="weather-info-bottom">
+					<div class="item">
+						<div class="item__weather-type-icon">
+							<img src="images/01.png" />
+						</div>
+						<div class="item__weather-type">多云</div>
+						<div class="item__wind">
+							<div class="wind__type">西风</div>
+							<div class="wind__rank">3级</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="item__weather-type-icon">
+							<img src="images/01.png" />
+						</div>
+						<div class="item__weather-type">多云</div>
+						<div class="item__wind">
+							<div class="wind__type">西风</div>
+							<div class="wind__rank">3级</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="item__weather-type-icon">
+							<img src="images/01.png" />
+						</div>
+						<div class="item__weather-type">多云</div>
+						<div class="item__wind">
+							<div class="wind__type">西风</div>
+							<div class="wind__rank">3级</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="item__weather-type-icon">
+							<img src="images/01.png" />
+						</div>
+						<div class="item__weather-type">多云</div>
+						<div class="item__wind">
+							<div class="wind__type">西风</div>
+							<div class="wind__rank">3级</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="item__weather-type-icon">
+							<img src="images/01.png" />
+						</div>
+						<div class="item__weather-type">多云</div>
+						<div class="item__wind">
+							<div class="wind__type">西风</div>
+							<div class="wind__rank">3级</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="item__weather-type-icon">
+							<img src="images/01.png" />
+						</div>
+						<div class="item__weather-type">多云</div>
+						<div class="item__wind">
+							<div class="wind__type">西风</div>
+							<div class="wind__rank">3级</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="item__weather-type-icon">
+							<img src="images/01.png" />
+						</div>
+						<div class="item__weather-type">多云</div>
+						<div class="item__wind">
+							<div class="wind__type">西风</div>
+							<div class="wind__rank">3级</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="item__weather-type-icon">
+							<img src="images/01.png" />
+						</div>
+						<div class="item__weather-type">多云</div>
+						<div class="item__wind">
+							<div class="wind__type">西风</div>
+							<div class="wind__rank">3级</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- E 一周天气 -->
+			<!-- S 生活建议 -->
+			<section class="life-advice">
+				<div class="slider">
+					<div class="slider__slide">
+						<div class="item">
+							<div class="item__icon">
+								<img src="images/car.png" />
+							</div>
+							<div class="item__advice">不限行</div>
+							<div class="item__advice-type">尾号限行</div>
+						</div>
+						<div class="item">
+							<div class="item__icon">
+								<img src="images/car.png" />
+							</div>
+							<div class="item__advice">不限行</div>
+							<div class="item__advice-type">尾号限行</div>
+						</div>
+						<div class="item">
+							<div class="item__icon">
+								<img src="images/car.png" />
+							</div>
+							<div class="item__advice">不限行</div>
+							<div class="item__advice-type">尾号限行</div>
+						</div>
+						<div class="item">
+							<div class="item__icon">
+								<img src="images/car.png" />
+							</div>
+							<div class="item__advice">不限行</div>
+							<div class="item__advice-type">尾号限行</div>
+						</div>
+						<div class="item">
+							<div class="item__icon">
+								<img src="images/car.png" />
+							</div>
+							<div class="item__advice">不限行</div>
+							<div class="item__advice-type">尾号限行</div>
+						</div>
+						<div class="item">
+							<div class="item__icon">
+								<img src="images/car.png" />
+							</div>
+							<div class="item__advice">不限行</div>
+							<div class="item__advice-type">尾号限行</div>
+						</div>
+						<div class="item">
+							<div class="item__icon">
+								<img src="images/car.png" />
+							</div>
+							<div class="item__advice">不限行</div>
+							<div class="item__advice-type">尾号限行</div>
+						</div>
+						<div class="item">
+							<div class="item__icon">
+								<img src="images/car.png" />
+							</div>
+							<div class="item__advice">不限行</div>
+							<div class="item__advice-type">尾号限行</div>
+						</div>
+					</div>
+					<div class="slider__slide">
+						<div class="item">
+							<div class="item__icon">
+								<img src="images/car.png" />
+							</div>
+							<div class="item__advice">不限行</div>
+							<div class="item__advice-type">尾号限行</div>
+						</div>
+						<div class="item">
+							<div class="item__icon">
+								<img src="images/car.png" />
+							</div>
+							<div class="item__advice">不限行</div>
+							<div class="item__advice-type">尾号限行</div>
+						</div>
+						<div class="item">
+							<div class="item__icon">
+								<img src="images/car.png" />
+							</div>
+							<div class="item__advice">不限行</div>
+							<div class="item__advice-type">尾号限行</div>
+						</div>
+						<div class="item">
+							<div class="item__icon">
+								<img src="images/car.png" />
+							</div>
+							<div class="item__advice">不限行</div>
+							<div class="item__advice-type">尾号限行</div>
+						</div>
+						<div class="item">
+							<div class="item__icon">
+								<img src="images/car.png" />
+							</div>
+							<div class="item__advice">不限行</div>
+							<div class="item__advice-type">尾号限行</div>
+						</div>
+						<div class="item">
+							<div class="item__icon">
+								<img src="images/car.png" />
+							</div>
+							<div class="item__advice">不限行</div>
+							<div class="item__advice-type">尾号限行</div>
+						</div>
+						<div class="item">
+							<div class="item__icon">
+								<img src="images/car.png" />
+							</div>
+							<div class="item__advice">不限行</div>
+							<div class="item__advice-type">尾号限行</div>
+						</div>
+						<div class="item">
+							<div class="item__icon">
+								<img src="images/car.png" />
+							</div>
+							<div class="item__advice">不限行</div>
+							<div class="item__advice-type">尾号限行</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- E 生活建议 -->
+
+			<!-- S footer -->
+			<footer>
+				<p>数据来源于中国天气网</p>
+			</footer>
+			<!-- E footer -->
+		</div>
+		<script src="libs/Chart.min.js"></script>
+		<script src="js/chart.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>
