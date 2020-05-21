@@ -160,6 +160,37 @@ img {
 	font-weight: 500;
 }
 
+.loading {
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 30;
+	background-color: #fff;
+	top: 0;
+}
+.loading.active {
+	display: block;
+}
+.circle {
+	margin: 200px auto 0;
+	width: 100px;
+	height: 100px;
+	border-radius: 100%;
+	border: 5px solid rgba(0, 0, 0, 0.3);
+	border-top-color: #000;
+	animation: loading 2s linear infinite;
+}
+
+@keyframes loading {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
 @media only screen and (max-width: 790px) {
 	body {
 		grid-template-columns: 100%;

@@ -1,10 +1,12 @@
 function sendXhr({ method = "GET", url, async = true, success, error } = {}) {
 	const xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function () {
+		if (xhr.readyState == 1) toggleLoading();
 		if (xhr.readyState == 4) {
 			if (xhr.status >= 200 && xhr.status < 300) {
 				let res = JSON.parse(xhr.responseText);
 				success(res);
+				toggleLoading();
 			} else {
 				console.log("error");
 			}
@@ -37,13 +39,14 @@ const OnePoetry = {
 		sendXhr({
 			method: "GET",
 			url: "https://v2.jinrishici.com/one.json",
-			async: true,
+			async: false,
 			success: OnePoetry.handleRes,
 		});
 	},
 };
 
 function handlePoetryJsonRes(res) {
+	toggleLoading();
 	let index = Math.floor(Math.random() * 999);
 	setPoetry({
 		title: res[index].title,
@@ -51,6 +54,7 @@ function handlePoetryJsonRes(res) {
 		content: res[index].paragraphs,
 	});
 	sessionStorage.setItem("poetry", JSON.stringify(res));
+	toggleLoading();
 }
 function sendPoetryJsonXhr() {
 	function getPoetryJsonUrl() {
@@ -82,8 +86,12 @@ function httpRequest() {
 		? handlePoetryJsonRes(JSON.parse(sessionStorage.getItem("poetry")))
 		: sendPoetryJsonXhr();
 }
-httpRequest();
 OnePoetry.sendXhr();
+httpRequest();
 document
 	.querySelector(".refresh")
 	.addEventListener("click", httpRequest, false);
+
+function toggleLoading() {
+	document.querySelector(".loading").classList.toggle("active");
+}
