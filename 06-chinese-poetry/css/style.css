@@ -1,0 +1,157 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html {
+	font-size: 14px;
+}
+body {
+	width: 100%;
+	min-height: 100vh;
+	min-width: 320px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 80%;
+	align-content: center;
+	justify-items: center;
+	column-gap: 20px;
+	background: url(../images/bg.png) no-repeat;
+	background-size: 35%;
+	background-position: right top;
+	font-family: "Source Han Serif SC", Manuale, "Consolas", "Noto Serif CJK SC",
+		"Songti SC", STSong, serif, PingFangSC-Light, PingFangTC-Light,
+		sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol !important;
+}
+.mask {
+	z-index: 5;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.6);
+}
+img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.cover,
+.poetry {
+	position: relative;
+	z-index: 10;
+}
+
+.cover {
+	width: 80%;
+	height: 100%;
+}
+
+.poetry {
+	padding: 20px 0 0 20px;
+	color: #333;
+	border: 1px solid #eee;
+	background: rgba(255, 255, 255, 0.8);
+	width: 83%;
+	overflow-y: visible;
+	overflow-x: hidden;
+	position: relative;
+}
+.poetry::-webkit-scrollbar {
+	width: 2px;
+}
+.poetry::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.25);
+	border: 5px;
+}
+.poetry .poetry__title,
+.poetry .poetry__author,
+.poetry .poetry__content {
+	letter-spacing: 2px;
+	font-weight: 300;
+}
+.poetry__title {
+	font-size: 2.315rem;
+}
+.poetry .poetry__author {
+	padding: 20px 0 20px 0;
+	color: #ccc;
+}
+
+.poetry .poetry__content {
+	position: relative;
+	padding: 0 20px 20px 20px;
+	line-height: 1.825em;
+	font-size: 1.315rem;
+}
+.poetry .poetry__content::after {
+	content: "";
+	display: block;
+	position: absolute;
+	background-color: #333;
+	height: 3px;
+	width: 25%;
+	bottom: 0;
+	right: 20px;
+}
+
+.poetry .poetry__content p {
+	margin: 0 0 1em;
+}
+.poetry .poetry__source {
+	padding: 20px;
+	display: flex;
+	justify-content: flex-end;
+}
+.poetry .poetry__source__a {
+	border-bottom: 1px solid #2c3e50;
+	color: #2c3e50;
+	line-height: 1.8285em;
+	letter-spacing: 2px;
+	font-size: 1.315rem;
+	font-weight: 300;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.poetry__dynasty {
+	letter-spacing: 2px;
+	font-size: 1.315rem;
+	font-weight: 300;
+	text-align: right;
+	padding: 0 20px 20px;
+}
+
+.refresh {
+	z-index: 30;
+	position: absolute;
+	right: 80px;
+	top: 20px;
+	background-color: rgba(0, 0, 0, 0.25);
+	display: block;
+	line-height: 1;
+	white-space: nowrap;
+	cursor: pointer;
+	background: #fff;
+	border: 1px solid #dcdfe6;
+	color: #606266;
+	-webkit-appearance: none;
+	text-align: center;
+	box-sizing: border-box;
+	outline: none;
+	margin: 0;
+	transition: 0.1s;
+	font-weight: 500;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	padding: 12px 20px;
+	font-size: 14px;
+	border-radius: 4px;
+}
+
+@media only screen and (max-width: 790px) {
+	body {
+		grid-template-columns: 100%;
+		grid-template-rows: 100% 100vh;
+	}
+}
