@@ -1,14 +1,24 @@
-function sendXhr({ method = "GET", url, async = true, success, error } = {}) {
+function sendXhr({
+	method = "GET",
+	url,
+	async = true,
+	success,
+	error = () => {
+		console.log("error");
+	},
+	beforeSuccess = null,
+	afterSuccess = null,
+} = {}) {
 	const xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function () {
-		if (xhr.readyState == 1) toggleLoading();
+		if (xhr.readyState == 1 && beforeSuccess) beforeSuccess();
 		if (xhr.readyState == 4) {
 			if (xhr.status >= 200 && xhr.status < 300) {
 				let res = JSON.parse(xhr.responseText);
 				success(res);
-				toggleLoading();
+				afterSuccess && afterSuccess();
 			} else {
-				console.log("error");
+				error();
 			}
 		}
 	};
@@ -46,7 +56,6 @@ const OnePoetry = {
 };
 
 function handlePoetryJsonRes(res) {
-	toggleLoading();
 	let index = Math.floor(Math.random() * 999);
 	setPoetry({
 		title: res[index].title,
@@ -54,7 +63,6 @@ function handlePoetryJsonRes(res) {
 		content: res[index].paragraphs,
 	});
 	sessionStorage.setItem("poetry", JSON.stringify(res));
-	toggleLoading();
 }
 function sendPoetryJsonXhr() {
 	function getPoetryJsonUrl() {
@@ -78,6 +86,8 @@ function sendPoetryJsonXhr() {
 		url: getPoetryJsonUrl(),
 		async: true,
 		success: handlePoetryJsonRes,
+		beforeSuccess: toggleLoading,
+		afterSuccess: toggleLoading,
 	});
 }
 
