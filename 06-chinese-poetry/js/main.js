@@ -29,12 +29,9 @@ function setPoetry({ title, author, dynasty, content } = {}) {
 const OnePoetry = {
 	handleRes: res => {
 		let origin = res.data.origin;
-		setPoetry({
-			title: origin.title,
-			author: origin.author,
-			dynasty: origin.dynasty,
-			content: origin.content,
-		});
+		document.querySelector(
+			".one"
+		).innerText = `${res.data.content}—— ${origin.author}《${origin.title}》 `;
 	},
 	sendXhr: () => {
 		sendXhr({
@@ -86,6 +83,7 @@ function httpRequest() {
 		: sendPoetryJsonXhr();
 }
 httpRequest();
+OnePoetry.sendXhr();
 document
 	.querySelector(".refresh")
 	.addEventListener("click", httpRequest, false);

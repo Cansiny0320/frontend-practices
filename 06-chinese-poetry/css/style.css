@@ -150,6 +150,16 @@ img {
 	border-radius: 4px;
 }
 
+.one {
+	color: #333;
+	position: absolute;
+	z-index: 30;
+	font-size: 1.5rem;
+	right: 220px;
+	top: 30px;
+	font-weight: 500;
+}
+
 @media only screen and (max-width: 790px) {
 	body {
 		grid-template-columns: 100%;
