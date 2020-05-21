@@ -1,8 +1,3 @@
-// poet.song.[0-254000].json
-const songAPI = `https://unpkg.com/chinese-poetry@1.2.0/chinese-poetry/json/poet.song.0.json`;
-// poet.tang.[0-57000].json
-const tangAPI = `https://unpkg.com/chinese-poetry@1.2.0/chinese-poetry/json/poet.tang.10000.json`;
-
 function sendXhr({ method = "GET", url, async = true, success, error } = {}) {
 	const xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function () {
@@ -60,10 +55,26 @@ function handlePoetryJsonRes(res) {
 	});
 	sessionStorage.setItem("poetry", JSON.stringify(res));
 }
-function sendJsonXhr() {
+function sendPoetryJsonXhr() {
+	function getPoetryJsonUrl() {
+		/**
+		 *  example
+		 *  poet.song.[0-254000].json
+		 *	poet.tang.[0-57000].json
+		 */
+		const API = [
+			`https://unpkg.com/chinese-poetry@1.2.0/chinese-poetry/json/poet.song.${
+				Math.round(Math.random() * 254) * 1000
+			}.json`,
+			`https://unpkg.com/chinese-poetry@1.2.0/chinese-poetry/json/poet.tang.${
+				Math.round(Math.random() * 57) * 1000
+			}.json`,
+		];
+		return API[Math.round(Math.random() * (API.length - 1))];
+	}
 	sendXhr({
 		method: "GET",
-		url: tangAPI,
+		url: getPoetryJsonUrl(),
 		async: true,
 		success: handlePoetryJsonRes,
 	});
@@ -72,7 +83,7 @@ function sendJsonXhr() {
 function httpRequest() {
 	sessionStorage.getItem("poetry")
 		? handlePoetryJsonRes(JSON.parse(sessionStorage.getItem("poetry")))
-		: sendJsonXhr();
+		: sendPoetryJsonXhr();
 }
 httpRequest();
 document
