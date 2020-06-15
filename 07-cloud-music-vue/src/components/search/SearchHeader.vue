@@ -11,17 +11,24 @@
             type="text"
             v-model="keywords"
             class="input"
-            :placeholder="placeholder"
+            :placeholder="defaultShowKeywords"
             @keydown.enter="search"
         />
         <van-icon name="friends-o" tag="div" size="30" />
+        <search-advice
+            class="advice"
+            :keywords="keywords"
+            @clickAdvice="search"
+        />
     </div>
 </template>
 
 <script>
 import api from '@/api'
 import { mapMutations } from 'vuex'
+import SearchAdvice from './SearchAdvice'
 export default {
+    components: { SearchAdvice },
     props: {
         keywords: {
             type: String,
@@ -30,7 +37,8 @@ export default {
     },
     data() {
         return {
-            placeholder: '中国话-SHE'
+            defaultShowKeywords: '',
+            defaultRealKeywords: ''
         }
     },
 
@@ -39,7 +47,7 @@ export default {
             this.$emit('back');
         },
         async search() {
-            !this.keywords && (this.keywords = this.placeholder)
+            !this.keywords && (this.keywords = this.defaultRealKeywords)
             const res = await api.searchFn({
                 keywords: this.keywords,
                 type: 1
@@ -54,12 +62,22 @@ export default {
                 albumID: item.album.id,
                 time: item.duration
             }))
+            this.setKeywords(this.keywords)
             this.setSearchSongs(songs)
             this.$router.push(`/search/${this.keywords}`)
         },
+        async getDefaultSearchKeywords() {
+            const res = await api.defaultSearchFn();
+            this.defaultShowKeywords = res.data.data.showKeyword;
+            this.defaultRealKeywords = res.data.data.realkeyword;
+        },
         ...mapMutations({
-            setSearchSongs: 'SET_SEARCH_SONGS'
+            setSearchSongs: 'SET_SEARCH_SONGS',
+            setKeywords: 'SET_KEYWORDS'
         })
+    },
+    created() {
+        this.getDefaultSearchKeywords();
     }
 }
 </script>
@@ -68,12 +86,20 @@ export default {
 .search-header {
     display: flex;
     justify-content: space-between;
+    position: relative;
     .input {
         border: none;
         border-bottom: 1px solid #333;
         width: 70%;
         height: 30px;
         font-size: 1.4em;
+    }
+    .advice {
+        background-color: #fff;
+        position: absolute;
+        z-index: 999;
+        top: 33px;
+        left: 30px;
     }
 }
 </style>

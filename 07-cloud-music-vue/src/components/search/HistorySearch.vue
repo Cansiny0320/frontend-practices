@@ -40,7 +40,6 @@ export default {
             this.historySearch = JSON.parse(localStorage.getItem('search_history'))
         },
         async click(keywords) {
-            this.setKeywords(keywords);
             const res = await api.searchFn({
                 keywords,
                 type: 1
@@ -55,6 +54,7 @@ export default {
                 albumID: item.album.id,
                 time: item.duration
             }))
+            this.setKeywords(keywords);
             this.setSearchSongs(songs)
             this.$router.push(`/search/${keywords}`)
         },
