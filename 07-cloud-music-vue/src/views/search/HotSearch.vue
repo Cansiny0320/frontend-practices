@@ -1,5 +1,6 @@
 <template>
     <div class="hot-search">
+        <history-search />
         <h3 class="title">热搜榜</h3>
         <ol>
             <li
@@ -35,8 +36,11 @@
 
 <script>
 import api from '@/api'
+import { addLocalStorage } from '@/common/localStorage'
+import HistorySearch from '@/components/search/HistorySearch'
 import { mapMutations } from 'vuex'
 export default {
+    components: { HistorySearch },
     data() {
         return {
             hotSearchList: []
@@ -69,6 +73,7 @@ export default {
                 time: item.duration
             }))
             this.setSearchSongs(songs)
+            addLocalStorage('search_history', { keywords })
             this.$router.push(`/search/${keywords}`)
         },
         ...mapMutations({
