@@ -1,6 +1,6 @@
 <template>
     <div class="search-advice">
-        <ul v-show="keywords">
+        <ul v-show="advice.length !== 0 && active">
             <li class="search" @click="clickSearch('')">
                 搜索"{{ keywords }}"
             </li>
@@ -24,6 +24,10 @@ export default {
         keywords: {
             type: String,
             default: ''
+        },
+        active: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -34,9 +38,13 @@ export default {
     methods: {
         async getAdvice() {
             const res = await api.suggestSearchFn(this.keywords);
-            this.advice = res.data.result.allMatch.map(item => ({
-                keywords: item.keyword,
-            }))
+            try {
+                this.advice = res.data.result.allMatch.map(item => ({
+                    keywords: item.keyword,
+                }))
+            } catch (error) {
+                this.advice = []
+            }
         },
         clickSearch(advice) {
             advice && (this.keywords = advice)

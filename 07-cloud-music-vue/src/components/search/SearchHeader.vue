@@ -11,6 +11,8 @@
             type="text"
             v-model="keywords"
             class="input"
+            @blur="active = false"
+            @input="active = true"
             :placeholder="defaultShowKeywords"
             @keydown.enter="search"
         />
@@ -19,6 +21,7 @@
             class="advice"
             :keywords="keywords"
             @clickAdvice="search"
+            :active="active"
         />
     </div>
 </template>
@@ -38,7 +41,8 @@ export default {
     data() {
         return {
             defaultShowKeywords: '',
-            defaultRealKeywords: ''
+            defaultRealKeywords: '',
+            active: false
         }
     },
 
