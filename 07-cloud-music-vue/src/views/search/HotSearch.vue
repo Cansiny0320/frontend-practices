@@ -58,11 +58,22 @@ export default {
                 keywords,
                 type: 1
             })
-            console.log(res.data);
+            const songs = res.data.result.songs.map(item => ({
+                id: item.id,
+                name: item.name,
+                artists: item.artists.map(item => ([
+                    item.name
+                ])),
+                album: item.album.name,
+                albumID: item.album.id,
+                time: item.duration
+            }))
+            this.setSearchSongs(songs)
             this.$router.push(`/search/${keywords}`)
         },
         ...mapMutations({
-            setKeywords: 'SET_KEYWORDS'
+            setKeywords: 'SET_KEYWORDS',
+            setSearchSongs: 'SET_SEARCH_SONGS'
         })
     },
     created() {

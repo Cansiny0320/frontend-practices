@@ -1,17 +1,19 @@
 <template>
     <div class="search">
-        <search-header
-            class="search__header"
-            :keywords="keywords"
-            @back="back"
-        />
+        <van-sticky class="sticky">
+            <search-header
+                class="search__header"
+                :keywords="keywords"
+                @back="back"
+            />
+        </van-sticky>
         <router-view></router-view>
     </div>
 </template>
 
 <script>
 // import api from '@/api'
-import SearchHeader from '@/components/base/search/SearchHeader'
+import SearchHeader from '@/components/search/SearchHeader'
 import { mapGetters, mapMutations } from 'vuex'
 export default {
     components: { SearchHeader },
@@ -49,6 +51,7 @@ export default {
     width: 100vw;
     &__header {
         width: 100%;
+        background-color: #fff;
     }
     .hot-search {
     }

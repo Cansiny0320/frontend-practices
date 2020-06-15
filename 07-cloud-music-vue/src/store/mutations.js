@@ -7,4 +7,7 @@ export default {
     [MutationTypes.SET_KEYWORDS](state, keywords) {
         state.keywords = keywords;
     },
+    [MutationTypes.SET_SEARCH_SONGS](state, searchSongs) {
+        state.searchSongs = searchSongs;
+    },
 };

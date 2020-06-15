@@ -91,6 +91,7 @@ export default {
 
 <style lang="scss" scoped>
 .title {
+    box-sizing: content-box;
     display: flex;
     justify-content: space-between;
     align-items: center;

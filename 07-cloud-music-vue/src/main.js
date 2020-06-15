@@ -6,7 +6,19 @@ import store from './store';
 import Fastclick from 'fastclick';
 import '@assets/iconfonts/iconfont.css';
 import '@assets/styles/reset.scss';
-import { Swipe, SwipeItem, Lazyload, Sticky, Popup, Form, Field, Button, Icon } from 'vant';
+import {
+    Swipe,
+    SwipeItem,
+    Lazyload,
+    Sticky,
+    Popup,
+    Form,
+    Field,
+    Button,
+    Icon,
+    Tab,
+    Tabs,
+} from 'vant';
 import 'vant/lib/index.css';
 Vue.config.productionTip = false;
 Fastclick.attach(document.body);
@@ -18,6 +30,7 @@ Vue.use(Popup);
 Vue.use(Form).use(Field);
 Vue.use(Button);
 Vue.use(Icon);
+Vue.use(Tab).use(Tabs);
 new Vue({
     router,
     store,
