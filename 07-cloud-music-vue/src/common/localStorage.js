@@ -1,8 +1,9 @@
 export const addLocalStorage = (item, value) => {
     const data = JSON.parse(localStorage.getItem(item));
     if (data !== null) {
-        console.log(data);
-
+        if (data.some(ele => ele.keywords === value.keywords)) {
+            return;
+        }
         data.unshift(value);
         localStorage.setItem(item, JSON.stringify(data));
     } else {

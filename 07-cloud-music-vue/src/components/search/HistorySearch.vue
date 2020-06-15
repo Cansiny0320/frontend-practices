@@ -2,7 +2,12 @@
     <div class="history-search">
         <div class="history-search__title">
             <h3 class="history-search__title__name">历史记录</h3>
-            <van-icon name="delete" class="clear-btn" size="20" />
+            <van-icon
+                name="delete"
+                class="clear-btn"
+                size="20"
+                @click="clear"
+            />
         </div>
         <ul class="history-search__ul">
             <li
@@ -27,6 +32,10 @@ export default {
         }
     },
     methods: {
+        clear() {
+            localStorage.clear('search_history')
+            this.historySearch = []
+        },
         getHistorySearch() {
             this.historySearch = JSON.parse(localStorage.getItem('search_history'))
         },
