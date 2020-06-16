@@ -9,9 +9,10 @@
         />
         <input
             type="text"
-            v-model="keywords"
+            v-model="_keywords"
             class="input"
             @blur="active = false"
+            @focus="keywords ? (active = true) : (active = false)"
             @input="keywords ? (active = true) : (active = false)"
             :placeholder="defaultShowKeywords"
             @keydown.enter="search"
@@ -29,6 +30,7 @@
 <script>
 import api from '@/api'
 import { mapMutations } from 'vuex'
+import { addLocalStorage } from '@/common/localStorage'
 import SearchAdvice from './SearchAdvice'
 export default {
     components: { SearchAdvice },
@@ -42,10 +44,19 @@ export default {
         return {
             defaultShowKeywords: '',
             defaultRealKeywords: '',
-            active: false
+            active: false,
         }
     },
-
+    computed: {
+        _keywords: {
+            get() {
+                return this.keywords
+            },
+            set(val) {
+                this.setKeywords(val)
+            }
+        }
+    },
     methods: {
         back() {
             this.$emit('back');
@@ -54,24 +65,32 @@ export default {
             this.$router.push('/singer')
         },
         async search() {
-            !this.keywords && (this.keywords = this.defaultRealKeywords)
-            const res = await api.searchFn({
-                keywords: this.keywords,
-                type: 1
-            })
-            const songs = res.data.result.songs.map(item => ({
-                id: item.id,
-                name: item.name,
-                artists: item.artists.map(item => ([
-                    item.name
-                ])),
-                album: item.album.name,
-                albumID: item.album.id,
-                time: item.duration
-            }))
-            this.setKeywords(this.keywords)
-            this.setSearchSongs(songs)
-            this.$router.push(`/search/${this.keywords}`)
+
+            try {
+                !this._keywords && (this._keywords = this.defaultRealKeywords)
+                await console.log(); //延时
+                const res = await api.searchFn({
+                    keywords: this._keywords,
+                    type: 1
+                })
+                const songs = res.data.result.songs.map(item => ({
+                    id: item.id,
+                    name: item.name,
+                    artists: item.artists.map(item => ([
+                        item.name
+                    ])),
+                    album: item.album.name,
+                    albumID: item.album.id,
+                    time: item.duration
+                }))
+                this.setKeywords(this._keywords)
+                this.setSearchSongs(songs)
+                addLocalStorage('search_history', { keywords: this._keywords })
+                this.$router.push(`/search/${this._keywords}`)
+            } catch (error) {
+                console.error(error);
+
+            }
         },
         async getDefaultSearchKeywords() {
             const res = await api.defaultSearchFn();

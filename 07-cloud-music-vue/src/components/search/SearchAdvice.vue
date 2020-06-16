@@ -37,12 +37,13 @@ export default {
     },
     methods: {
         async getAdvice() {
-            const res = await api.suggestSearchFn(this.keywords);
             try {
+                const res = await api.suggestSearchFn(this.keywords);
                 this.advice = res.data.result.allMatch.map(item => ({
                     keywords: item.keyword,
                 }))
             } catch (error) {
+                console.error(error)
                 this.advice = []
             }
         },
