@@ -18,6 +18,7 @@ import {
     Icon,
     Tab,
     Tabs,
+    PullRefresh,
 } from 'vant';
 import 'vant/lib/index.css';
 Vue.config.productionTip = false;
@@ -31,6 +32,7 @@ Vue.use(Form).use(Field);
 Vue.use(Button);
 Vue.use(Icon);
 Vue.use(Tab).use(Tabs);
+Vue.use(PullRefresh);
 new Vue({
     router,
     store,

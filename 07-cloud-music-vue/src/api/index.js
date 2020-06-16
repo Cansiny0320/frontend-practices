@@ -638,13 +638,15 @@ export default {
      * /artist/list?cat=1001&initial=b
      * 返回内容将以 name 字段开头为 b 或者拼音开头为 b 为顺序排列
      */
-    singerClassFn(cat = 1001, limit = 30, offset = 0, initial) {
+    singerClassFn({ cat = 1001, limit = 30, offset = 0, initial, type = -1, area = -1 } = {}) {
         return axios.get(singerClass, {
             params: {
                 cat,
                 limit,
                 offset,
                 initial,
+                type,
+                area,
             },
         });
     },

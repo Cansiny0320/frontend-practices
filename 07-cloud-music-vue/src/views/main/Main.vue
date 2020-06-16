@@ -74,7 +74,7 @@ export default {
     data() {
         return {
             show: false,
-            cheack: "签到"
+            cheack: "签到",
         }
     },
     computed: {

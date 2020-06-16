@@ -1,20 +1,22 @@
 <template>
     <div class="find">
-        <div class="swipe-container">
-            <swiper />
-        </div>
-        <nav-link></nav-link>
-        <div class="loading-container" v-show="!songList.length">
-            <loading />
-        </div>
-        <div class="wrapper">
-            <recommend :songList="songList" />
-            <new-song
-                class="new-song"
-                :newDishs="newDishs"
-                :newSongs="newSongs"
-            />
-        </div>
+        <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+            <div class="swipe-container">
+                <swiper />
+            </div>
+            <nav-link></nav-link>
+            <div class="loading-container" v-show="!songList.length">
+                <loading />
+            </div>
+            <div class="wrapper">
+                <recommend :songList="songList" />
+                <new-song
+                    class="new-song"
+                    :newDishs="newDishs"
+                    :newSongs="newSongs"
+                />
+            </div>
+        </van-pull-refresh>
     </div>
 </template>
 
@@ -39,9 +41,18 @@ export default {
             songList: [],
             newDishs: [],
             newSongs: [],
+            isLoading: false,
         }
     },
     methods: {
+        onRefresh() {
+            setTimeout(() => {
+                this.getRecommendMusicList();
+                this.getNewDish();
+                this.getNewSong();
+                this.isLoading = false;
+            }, 1000);
+        },
         async getRecommendMusicList() {
             const limit = 6;
             const res = await api.recSongListFn();

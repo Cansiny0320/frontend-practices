@@ -12,11 +12,11 @@
             v-model="keywords"
             class="input"
             @blur="active = false"
-            @input="active = true"
+            @input="keywords ? (active = true) : (active = false)"
             :placeholder="defaultShowKeywords"
             @keydown.enter="search"
         />
-        <van-icon name="friends-o" tag="div" size="30" />
+        <van-icon name="friends-o" tag="div" size="30" @click="toSingerList" />
         <search-advice
             class="advice"
             :keywords="keywords"
@@ -49,6 +49,9 @@ export default {
     methods: {
         back() {
             this.$emit('back');
+        },
+        toSingerList() {
+            this.$router.push('/singer')
         },
         async search() {
             !this.keywords && (this.keywords = this.defaultRealKeywords)
