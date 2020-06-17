@@ -320,10 +320,11 @@ export default {
      * @param {*} type 签到类型 , 默认 0, 其中 0 为安卓端签到 ,1 为 web/PC 签到
      * 其中安卓端签到可获得 3 点经验 , web/PC 端签到可获得 2 点经验
      */
-    signInFn(type) {
+    signInFn({ type, cookie } = {}) {
         return axios.get(signIn, {
             params: {
                 type,
+                cookie,
             },
         });
     },

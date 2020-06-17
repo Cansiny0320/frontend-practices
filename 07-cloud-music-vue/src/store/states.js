@@ -1,5 +1,4 @@
 const state = {
-    user: {},
     keywords: '',
     searchSongs: {},
 };

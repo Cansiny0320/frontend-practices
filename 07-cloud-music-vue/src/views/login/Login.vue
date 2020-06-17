@@ -52,7 +52,6 @@
 
 <script>
 import api from '@/api'
-import { mapMutations } from 'vuex'
 export default {
     data() {
         return {
@@ -74,17 +73,13 @@ export default {
                 id: profile.userId,
                 cookie: res.data.cookie
             };
-            this.$cookies.set("user_login", JSON.stringify({ phoneNumber, password }));
-            this.setUser(user);
+            localStorage.setItem("user_info", JSON.stringify(user));
             this.$router.push('/find');
         },
         onFailed(errorInfo) {
             console.log(errorInfo);
 
         },
-        ...mapMutations({
-            setUser: 'SET_USER'
-        })
     },
 
 }

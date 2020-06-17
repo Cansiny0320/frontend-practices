@@ -13,7 +13,7 @@
             class="input"
             @blur="active = false"
             @focus="keywords ? (active = true) : (active = false)"
-            @input="keywords ? (active = true) : (active = false)"
+            @input="cheack($event)"
             :placeholder="defaultShowKeywords"
             @keydown.enter="search"
         />
@@ -58,6 +58,9 @@ export default {
         }
     },
     methods: {
+        cheack(e) {
+            e.target.value ? (this.active = true) : (this.active = false)
+        },
         back() {
             this.$emit('back');
         },

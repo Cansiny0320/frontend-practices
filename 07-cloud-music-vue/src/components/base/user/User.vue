@@ -1,17 +1,17 @@
 <template>
     <div class="user">
-        <div class="user__info" v-show="login === true">
+        <div class="user__info" v-if="login === true">
             <div class="user__info__avatar">
                 <img :src="user.avatarUrl" />
             </div>
             <div class="user__info__name">
                 <div class="name">{{ user.nickname }}</div>
                 <div class="cheack" @click="handleCheackIn">
-                    {{ cheack }}
+                    {{ cheackIn ? '已签到' : '签到' }}
                 </div>
             </div>
         </div>
-        <div class="user__login" v-show="login === false">
+        <div class="user__login" v-if="login === false">
             <h3 class="user__login__text">登录网易云音乐</h3>
             <router-link tag="button" to="/login" class="user__login__button"
                 >立即登录</router-link
@@ -21,26 +21,50 @@
 </template>
 
 <script>
+import api from "@/api"
 export default {
     props: {
         user: {
             type: Object,
-            required: true
+            required: true,
+            default: () => ({})
         },
         login: {
             type: Boolean,
             default: false
         },
-        cheack: {
-            type: String,
-            required: true
-        }
+    },
+    created() {
+        this.cheackIn = this.isCheackIn();
     },
     methods: {
-        handleCheackIn() {
-            this.$emit("cheackIn")
+        async isCheackIn() {
+            try {
+                const res = await api.userDetailFn(this.user.id);
+                return res.data.mobileSign;
+            } catch (error) {
+                console.error(error)
+            }
+            document.querySelectorAll(".choose").forEach((item, index) => { index % 5 === 0 && (item.checked = true) })
+        },
+        async handleCheackIn() {
+            if (this.cheackIn) return;
+            try {
+                const res = await api.signInFn({
+                    type: 0,
+                    cookie: this.user.cookie
+                });
+                res.data.code === 200 && (this.cheackIn = true)
+            } catch (error) {
+                console.error(error)
+            }
         }
     },
+    data() {
+        return {
+            cheackIn: false
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>
