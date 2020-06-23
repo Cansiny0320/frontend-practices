@@ -67,6 +67,18 @@ const routes = [
             },
         ],
     },
+    {
+        path: '/songlists',
+        name: 'songLists',
+        component: () => import('@/views/songlist/SongList'),
+        children: [
+            {
+                path: '/songlists/:id',
+                name: 'songList',
+                component: () => import('@/views/songlist/SongListDetail'),
+            },
+        ],
+    },
 ];
 
 const router = new VueRouter({

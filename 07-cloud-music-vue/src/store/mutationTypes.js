@@ -1,2 +1,3 @@
 export const SET_KEYWORDS = 'SET_KEYWORDS';
 export const SET_SEARCH_SONGS = 'SET_SEARCH_SONGS';
+export const SET_SONG_LIST = 'SET_SONG_LIST';

@@ -12,6 +12,7 @@
 
 <script>
 export default {
+    name: 'Loading',
     props: {
         tip: {
             type: String,

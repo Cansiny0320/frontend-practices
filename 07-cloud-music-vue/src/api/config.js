@@ -3,6 +3,7 @@ const api = 'http://localhost:3000';
 // ===================发现页面
 export const bannerSwiper = api + '/banner?type=1'; // 请求发现页面轮播图
 export const recSongList = api + '/personalized'; // 推荐歌单(未登录)
+export const recSongListLogin = api + '/recommend/resource'; // 推荐歌单(登录)
 export const highquality = api + '/top/playlist/highquality'; // 精品歌单
 export const catlist = api + '/playlist/catlist'; // 获取歌单分类 !!!
 export const hot = api + '/playlist/hot'; // 获取热门歌单分类 !!!

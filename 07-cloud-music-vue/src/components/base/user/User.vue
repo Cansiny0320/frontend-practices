@@ -34,18 +34,23 @@ export default {
             default: false
         },
     },
+    data() {
+        return {
+            cheackIn: false
+        }
+    },
     created() {
-        this.cheackIn = this.isCheackIn();
+        this.isCheackIn();
     },
     methods: {
         async isCheackIn() {
             try {
                 const res = await api.userDetailFn(this.user.id);
-                return res.data.mobileSign;
+
+                this.cheackIn = res.data.mobileSign;
             } catch (error) {
                 console.error(error)
             }
-            document.querySelectorAll(".choose").forEach((item, index) => { index % 5 === 0 && (item.checked = true) })
         },
         async handleCheackIn() {
             if (this.cheackIn) return;
@@ -58,11 +63,6 @@ export default {
             } catch (error) {
                 console.error(error)
             }
-        }
-    },
-    data() {
-        return {
-            cheackIn: false
         }
     }
 }

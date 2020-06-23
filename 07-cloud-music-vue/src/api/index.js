@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
     bannerSwiper,
     recSongList,
+    recSongListLogin,
     highquality,
     recSongs,
     topList,
@@ -116,11 +117,12 @@ export default {
      * @param {*} id 歌单 id
      * @param {*} s 歌单最近的 s 个收藏者,默认5个
      */
-    albumDetailFn(id, s = 5) {
+    albumDetailFn({ id, s = 5, cookie }) {
         return axios.get(albumDetail, {
             params: {
                 id,
                 s,
+                cookie,
             },
         });
     },
@@ -135,10 +137,21 @@ export default {
      * ?limit=30
      * @param {*} limit 取出数量，默认是30
      */
-    recSongListFn(limit = 30) {
+    recSongListFn({ limit = 30 } = {}) {
         return axios.get(recSongList, {
             params: {
                 limit,
+            },
+        });
+    },
+    /**
+     * 请求 可获取推荐歌单(登录)
+     * @param {*} cookie
+     */
+    recSongListLoginFn({ cookie } = {}) {
+        return axios.get(recSongListLogin, {
+            params: {
+                cookie,
             },
         });
     },

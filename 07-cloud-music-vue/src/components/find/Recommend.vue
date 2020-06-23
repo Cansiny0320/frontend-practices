@@ -7,7 +7,11 @@
             class="title"
         ></Title>
         <ul class="container">
-            <li v-for="(item, index) of songList" :key="index">
+            <li
+                v-for="(item, index) of recSongList"
+                :key="index"
+                @click="toDetail(item.id)"
+            >
                 <div class="img">
                     <img v-lazy="item.picUrl" />
                     <div class="count">
@@ -25,14 +29,16 @@
 
 <script>
 import Title from '@/components/find/Title'
+import { mapMutations } from 'vuex'
+import api from '@/api'
 export default {
+    components: { Title },
     props: {
-        songList: {
+        recSongList: {
             type: Array,
             required: true
         }
     },
-    components: { Title },
     data() {
         return {
             titles: ["推荐歌单"]
@@ -41,7 +47,51 @@ export default {
     methods: {
         handleMoreBtnClick() {
             this.$router.push('/listsquare')
-        }
+        },
+        async toDetail(id) {
+            const user = JSON.parse(localStorage.getItem('user_info'))
+            const res = await api.albumDetailFn({
+                id,
+                cookie: user.cookie
+            });
+            const playlist = res.data.playlist;
+            const songList = {
+                id: playlist.id,
+                name: playlist.name,
+                coverImgUrl: playlist.coverImgUrl,
+                description: playlist.description,
+                playCount: playlist.playCount,
+                trackCount: playlist.trackCount,
+                creator: {
+                    avatarUrl: playlist.creator.avatarUrl,
+                    nickname: playlist.creator.nickname
+                },
+                tracks: playlist.tracks.map(item => ({
+                    name: item.name,
+                    id: item.id,
+                    album: {
+                        id: item.al.id,
+                        name: item.al.name,
+                        picUrl: item.al.picUrl
+                    },
+                    artists: item.ar.map(item => ([
+                        item.name
+                    ])),
+                    mv: item.mv,
+                    alia: item.alia,
+                }))
+            }
+            this.setSongList(songList);
+            this.$router.push({
+                path: `/songlists/${id}`,
+                params: {
+                    id
+                }
+            })
+        },
+        ...mapMutations({
+            setSongList: 'SET_SONG_LIST'
+        })
     },
     filters: {
         formatPlayCount(num) {
@@ -50,6 +100,7 @@ export default {
             } else if (num >= 1e8) {
                 return `${Math.round(num / 1e8)}亿`
             }
+            return num
         }
     }
 }
@@ -65,7 +116,6 @@ export default {
         flex-wrap: wrap;
         justify-content: space-between;
         align-content: space-between;
-        height: 340px;
         li {
             flex: 30%;
             margin: 0 5px;
@@ -95,6 +145,7 @@ export default {
         .name {
             color: #333;
             padding: 5px 0;
+            line-height: 18px;
         }
     }
 }

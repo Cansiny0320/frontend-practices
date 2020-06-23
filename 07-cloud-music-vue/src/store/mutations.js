@@ -7,4 +7,7 @@ export default {
     [MutationTypes.SET_SEARCH_SONGS](state, searchSongs) {
         state.searchSongs = searchSongs;
     },
+    [MutationTypes.SET_SONG_LIST](state, songList) {
+        state.songList = songList;
+    },
 };

@@ -21,6 +21,7 @@ import {
     PullRefresh,
 } from 'vant';
 import 'vant/lib/index.css';
+import Loading from '@/components/base/Loading';
 Vue.config.productionTip = false;
 Fastclick.attach(document.body);
 Vue.use(VueCookies);
@@ -33,6 +34,7 @@ Vue.use(Button);
 Vue.use(Icon);
 Vue.use(Tab).use(Tabs);
 Vue.use(PullRefresh);
+Vue.component('Loading', Loading);
 new Vue({
     router,
     store,

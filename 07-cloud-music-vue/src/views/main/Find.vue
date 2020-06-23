@@ -9,7 +9,7 @@
                 <loading />
             </div>
             <div class="wrapper">
-                <recommend :songList="songList" />
+                <recommend :recSongList="songList" />
                 <new-song
                     class="new-song"
                     :newDishs="newDishs"
@@ -32,7 +32,7 @@ import utils from '@/utils'
 export default {
     components: { Swiper, NavLink, Loading, Recommend, NewSong },
     created() {
-        this.getRecommendMusicList();
+        this.logined ? this.getLoginRecommendMusicList() : this.getRecommendMusicList();
         this.getNewDish();
         this.getNewSong();
     },
@@ -42,16 +42,35 @@ export default {
             newDishs: [],
             newSongs: [],
             isLoading: false,
+            user: JSON.parse(localStorage.getItem('user_info')),
+        }
+    },
+    computed: {
+        logined() {
+            return !!Object.keys(this.user).length
         }
     },
     methods: {
         onRefresh() {
             setTimeout(() => {
-                this.getRecommendMusicList();
+                this.logined ? this.getLoginRecommendMusicList() : this.getRecommendMusicList();
                 this.getNewDish();
                 this.getNewSong();
                 this.isLoading = false;
             }, 1000);
+        },
+        async getLoginRecommendMusicList() {
+            const limit = 6;
+            const res = await api.recSongListLoginFn({
+                cookie: this.user.cookie
+            })
+            const songList = res.data.recommend.map(item => ({
+                id: item.id,
+                name: item.name,
+                picUrl: item.picUrl,
+                playCount: item.playcount
+            }))
+            this.songList = utils.getRandomRecList(songList, limit);
         },
         async getRecommendMusicList() {
             const limit = 6;

@@ -52,6 +52,7 @@ export default {
     align-items: center;
     padding: 20px 10px;
     background-color: #fff;
+    box-sizing: border-box;
     .iconfont {
         color: $blackTextColor;
         font-size: $font-size-large;

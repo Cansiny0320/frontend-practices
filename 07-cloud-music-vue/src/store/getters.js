@@ -5,4 +5,7 @@ export default {
     searchSongs(state) {
         return state.searchSongs;
     },
+    songList(state) {
+        return state.songList;
+    },
 };

@@ -1,11 +1,14 @@
 <template>
-    <div id="app">
+    <div class="song-list">
         <router-view></router-view>
     </div>
 </template>
+
 <script>
+export default {
 
+}
 </script>
-<style lang="scss" scoped>
-</style>
 
+<style>
+</style>
