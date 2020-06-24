@@ -64,13 +64,17 @@ export default {
             })
             const songs = res.data.result.songs.map(item => ({
                 id: item.id,
+                url: `https://music.163.com/song/media/outer/url?id=${item.id}.mp3`,
                 name: item.name,
                 artists: item.artists.map(item => ([
                     item.name
                 ])),
-                album: item.album.name,
-                albumID: item.album.id,
-                time: item.duration
+                album: {
+                    name: item.album.name,
+                    id: item.album.id,
+                    picUrl: '',
+                },
+                duration: Math.floor(item.duration / 1000)
             }))
             this.setSearchSongs(songs)
             addLocalStorage('search_history', { keywords })

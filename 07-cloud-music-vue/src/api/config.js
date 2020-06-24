@@ -17,6 +17,7 @@ export const getDishInfo = api + '/album'; // 获取专辑内容
 export const newSongs = api + '/personalized/newsong'; // 发现页新歌
 export const personalFm = api + '/personal_fm'; // 发现页私人FM
 // ======================播放歌曲
+export const songDetail = api + '/song/detail'; //歌曲详情
 export const songUrl = api + '/song/url'; // 获取歌曲url
 export const checkSong = api + '/check/music'; // 查看歌曲是否可用
 export const songLyric = api + '/lyric'; // 获取歌词

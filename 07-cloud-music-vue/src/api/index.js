@@ -74,6 +74,7 @@ import {
     djToplistNewComers,
     djToplistPopulars,
     djToplistPays,
+    songDetail,
 } from './config';
 // 请求超时时间
 axios.defaults.timeout = 30000;
@@ -441,6 +442,21 @@ export default {
             params: {
                 id,
                 br,
+            },
+        });
+    },
+    /**
+     *
+     * @param {*} ids 音乐 id 支持多个 id, 用 , 隔开
+     * /song/detail?ids=347230,347231
+     */
+    songDetailFn(ids) {
+        return axios.get(songDetail, {
+            params: {
+                ids,
+            },
+            header: {
+                withCredentials: true,
             },
         });
     },

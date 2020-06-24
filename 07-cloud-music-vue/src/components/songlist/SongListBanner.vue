@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="info">
-            <h3 class="title" v-html="list.name"></h3>
+            <div class="title" v-html="list.name"></div>
             <div class="creator">
                 <div class="avatar"><img :src="list.creator.avatarUrl" /></div>
                 <div class="name" v-html="list.creator.nickname"></div>
@@ -76,6 +76,7 @@ export default {
         color: #fff;
         .title {
             line-height: 130%;
+            font-size: 18px;
         }
         .creator {
             margin: 10px 0;

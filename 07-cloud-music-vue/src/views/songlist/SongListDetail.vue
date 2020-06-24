@@ -1,6 +1,11 @@
 <template>
     <div class="song-list-detail">
-        <list-view :list="songList" title="歌单">
+        <list-view
+            :tracks="tracks"
+            :list="songList"
+            title="歌单"
+            @select="selectItem"
+        >
             <Banner :list="songList" />
         </list-view>
     </div>
@@ -9,19 +14,59 @@
 <script>
 import ListView from '@/components/base/ListView'
 import Banner from '@/components/songlist/SongListBanner'
-import { mapGetters } from 'vuex'
+import api from '@/api'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
     components: { ListView, Banner },
     data() {
         return {
-
+            tracks: [],
         }
     },
     computed: {
         ...mapGetters([
-            'songList'
+            'songList',
+            'currentSong'
         ])
+    },
+    activated() {
+        this.getTracks()
+    },
+    methods: {
+        async getTracks() {
+            this.tracks = [];
+            const res = await api.songDetailFn(this.songList.trackIds.join(','))
+            this.tracks = res.data.songs.map(item => ({
+                name: item.name,
+                id: item.id,
+                url: `https://music.163.com/song/media/outer/url?id=${item.id}.mp3`,
+                album: {
+                    id: item.al.id,
+                    name: item.al.name,
+                    picUrl: item.al.picUrl
+                },
+                artists: item.ar.map(item => ([
+                    item.name
+                ])),
+                mv: item.mv,
+                alia: item.alia,
+                duration: '',
+            }))
+        },
+        selectItem(track, index) {
+            this.selectPlay({
+                list: this.tracks,
+                index
+            })
+        },
+        ...mapActions([
+            'selectPlay'
+        ]),
+        ...mapMutations({
+            setCurrentSong: 'SET_CURRENT_SONG'
+        })
     }
+
 }
 </script>
 

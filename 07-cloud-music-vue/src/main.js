@@ -19,6 +19,7 @@ import {
     Tab,
     Tabs,
     PullRefresh,
+    Slider,
 } from 'vant';
 import 'vant/lib/index.css';
 import Loading from '@/components/base/Loading';
@@ -34,6 +35,7 @@ Vue.use(Button);
 Vue.use(Icon);
 Vue.use(Tab).use(Tabs);
 Vue.use(PullRefresh);
+Vue.use(Slider);
 Vue.component('Loading', Loading);
 new Vue({
     router,

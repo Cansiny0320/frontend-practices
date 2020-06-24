@@ -10,6 +10,7 @@
                             v-for="(item, index) of searchSongs"
                             :key="index"
                             class="item"
+                            @click="selectItem(item, index)"
                         >
                             <div class="item__left">
                                 <div class="item__left__name">
@@ -17,7 +18,7 @@
                                 </div>
                                 <div class="item__left__artists">
                                     {{ item.artists.join('/') }} -
-                                    {{ item.album }}
+                                    {{ item.album.name }}
                                 </div>
                             </div>
                             <div class="item__right">
@@ -39,20 +40,51 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 import PlayAll from '@/components/base/play/PlayAll'
+import api from '@/api'
 export default {
     components: { PlayAll },
-    computed: {
-        ...mapGetters([
-            'searchSongs',
-            'keywords'
-        ])
-    },
     data() {
         return {
             active: 1,
         }
+    },
+    computed: {
+        ...mapGetters([
+            'searchSongs',
+            'keywords',
+            'currentSong',
+            'currentIndex',
+            'playList',
+        ])
+    },
+    watch: {
+        async currentSong() {
+            if (!this.currentSong.album.picUrl) {
+                const currentSong = JSON.parse(JSON.stringify(this.currentSong));
+                const playList = JSON.parse(JSON.stringify(this.playList));
+                const res = await api.getDishInfoFn(currentSong.album.id)
+                currentSong.album.picUrl = res.data.album.picUrl;
+                playList[this.currentIndex] = currentSong
+                this.setPlayList(playList);
+            }
+        }
+    },
+    methods: {
+        selectItem(track, index) {
+            this.selectPlay({
+                list: this.searchSongs,
+                index
+            })
+        },
+        ...mapActions([
+            'selectPlay'
+        ]),
+        ...mapMutations({
+            setCurrentSong: 'SET_CURRENT_SONG',
+            setPlayList: 'SET_PLAY_LIST',
+        })
     }
 }
 </script>

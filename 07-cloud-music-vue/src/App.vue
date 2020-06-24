@@ -1,10 +1,16 @@
 <template>
     <div id="app">
-        <router-view></router-view>
+        <keep-alive>
+            <router-view></router-view>
+        </keep-alive>
+        <Player />
     </div>
 </template>
 <script>
-
+import Player from '@/components/player/Player'
+export default {
+    components: { Player }
+}
 </script>
 <style lang="scss" scoped>
 </style>

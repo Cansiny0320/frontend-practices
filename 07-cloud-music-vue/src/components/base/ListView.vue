@@ -19,15 +19,16 @@
             </div>
         </div>
         <div class="content">
-            <Loading class="loading" v-show="!Object.keys(list).length" />
+            <Loading class="loading" v-show="!Object.keys(tracks).length" />
             <ul>
                 <li
-                    v-for="(item, index) of list.tracks"
+                    v-for="(item, index) of tracks"
                     :key="index"
                     class="item"
+                    @click="selectItem(item, index)"
                 >
                     <div class="index">
-                        {{ index }}
+                        {{ index + 1 }}
                     </div>
                     <div class="item__left">
                         <div class="item__left__name van-ellipsis">
@@ -53,9 +54,13 @@
 <script>
 export default {
     props: {
+        tracks: {
+            type: Array,
+            required: true
+        },
         list: {
             type: Object,
-            required: true
+            required: true,
         },
         title: {
             type: String,
@@ -65,6 +70,9 @@ export default {
     methods: {
         back() {
             this.$router.back(-1)
+        },
+        selectItem(track, index) {
+            this.$emit('select', track, index);
         }
     }
 }
@@ -99,6 +107,8 @@ export default {
         background-color: #fff;
         position: relative;
         padding: 10px;
+        min-height: calc(100vh - 245px);
+        border-radius: 14px;
         .item {
             display: flex;
             align-items: center;

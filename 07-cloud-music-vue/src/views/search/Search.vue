@@ -12,7 +12,6 @@
 </template>
 
 <script>
-// import api from '@/api'
 import SearchHeader from '@/components/search/SearchHeader'
 import { mapGetters, mapMutations } from 'vuex'
 export default {
@@ -52,8 +51,6 @@ export default {
     &__header {
         width: 100%;
         background-color: #fff;
-    }
-    .hot-search {
     }
 }
 </style>

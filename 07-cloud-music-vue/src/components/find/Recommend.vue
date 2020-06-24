@@ -66,20 +66,9 @@ export default {
                     avatarUrl: playlist.creator.avatarUrl,
                     nickname: playlist.creator.nickname
                 },
-                tracks: playlist.tracks.map(item => ({
-                    name: item.name,
-                    id: item.id,
-                    album: {
-                        id: item.al.id,
-                        name: item.al.name,
-                        picUrl: item.al.picUrl
-                    },
-                    artists: item.ar.map(item => ([
-                        item.name
-                    ])),
-                    mv: item.mv,
-                    alia: item.alia,
-                }))
+                trackIds: playlist.trackIds.map(item => ([
+                    item.id,
+                ]))
             }
             this.setSongList(songList);
             this.$router.push({
