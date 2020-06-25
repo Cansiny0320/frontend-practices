@@ -3,7 +3,7 @@
         <div
             class="bg"
             :style="{
-                backgroundImage: `url(${list.coverImgUrl})`,
+                backgroundImage: `url(${bgUrl})`,
                 filter: `blur(100px)`,
                 backgroundSize: 'cover'
             }"
@@ -58,13 +58,13 @@ export default {
             type: Array,
             required: true
         },
-        list: {
-            type: Object,
+        bgUrl: {
+            type: String,
             required: true,
         },
         title: {
             type: String,
-            required: true,
+            default: 'title'
         }
     },
     methods: {

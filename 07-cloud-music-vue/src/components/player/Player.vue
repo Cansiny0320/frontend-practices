@@ -112,7 +112,7 @@ export default {
         return {
             duration: '',
             progress: 0,
-            currentTime: '00:00'
+            currentTime: ''
         }
     },
     computed: {

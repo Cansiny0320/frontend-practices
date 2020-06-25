@@ -2,7 +2,7 @@
     <div class="song-list-detail">
         <list-view
             :tracks="tracks"
-            :list="songList"
+            :bgUrl="songList.coverImgUrl"
             title="歌单"
             @select="selectItem"
         >

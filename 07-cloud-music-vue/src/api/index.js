@@ -110,8 +110,12 @@ export default {
     /**
      * 调用此接口 , 可获得每日推荐歌曲 ( 需要登录 )
      */
-    recSongsFn() {
-        return axios.get(recSongs);
+    recSongsFn(cookie) {
+        return axios.get(recSongs, {
+            params: {
+                cookie,
+            },
+        });
     },
     /**
      * 调用此接口 , 传入歌单 id, 可 以获取对应歌单内的所有的音乐
