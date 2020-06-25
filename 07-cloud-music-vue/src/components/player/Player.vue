@@ -86,6 +86,16 @@
             </div>
             <div class="player--mini__control">
                 <div class="playing" @click.stop="togglePlaying">
+                    <div class="circle">
+                        <van-circle
+                            v-model="progress"
+                            :rate="100"
+                            :speed="100"
+                            size="27"
+                            color="red"
+                            stroke-width="30"
+                        />
+                    </div>
                     <i class="iconfont" v-show="!playing">&#xe66e;</i>
                     <i class="iconfont" v-show="playing">&#xe66d;</i>
                 </div>
@@ -332,6 +342,14 @@ export default {
     &__control {
         margin-left: auto;
         display: flex;
+        .playing {
+            position: relative;
+            .circle {
+                position: absolute;
+                top: 1px;
+                left: 7px;
+            }
+        }
         .iconfont {
             font-size: 30px;
             margin: 0 5px;

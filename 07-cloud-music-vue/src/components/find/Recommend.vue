@@ -7,6 +7,7 @@
             class="title"
         ></Title>
         <ul class="container">
+            <Loading class="loading" v-show="!recSongList" />
             <li
                 v-for="(item, index) of recSongList"
                 :key="index"
@@ -31,8 +32,9 @@
 import Title from '@/components/find/Title'
 import { mapMutations } from 'vuex'
 import api from '@/api'
+import Loading from '@/components/base/Loading'
 export default {
-    components: { Title },
+    components: { Title, Loading },
     props: {
         recSongList: {
             type: Array,
@@ -46,7 +48,7 @@ export default {
     },
     methods: {
         handleMoreBtnClick() {
-            this.$router.push('/listsquare')
+            this.$router.push('/songlists')
         },
         async toDetail(id) {
             const user = JSON.parse(localStorage.getItem('user_info'))
@@ -84,10 +86,10 @@ export default {
     },
     filters: {
         formatPlayCount(num) {
-            if (num >= 1e5) {
-                return `${Math.round(num / 10000)}万`
-            } else if (num >= 1e8) {
-                return `${Math.round(num / 1e8)}亿`
+            if (num >= 1e8) {
+                return `${(num / 1e8).toFixed(1)}亿`
+            } else if (num >= 1e4) {
+                return `${Math.round(num / 1e4)}万`
             }
             return num
         }
@@ -105,15 +107,23 @@ export default {
         flex-wrap: wrap;
         justify-content: space-between;
         align-content: space-between;
+        position: relative;
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-30%, -50%);
+            z-index: 10;
+        }
         li {
             flex: 30%;
             margin: 0 5px;
-            &:nth-child(3n + 1) {
-                margin-left: 0;
-            }
-            &:nth-child(3n) {
-                margin-right: 0;
-            }
+        }
+        li:nth-child(3n + 1) {
+            margin-right: 0;
+        }
+        li:nth-child(3n - 1) {
+            margin-left: 0;
         }
         .img {
             position: relative;

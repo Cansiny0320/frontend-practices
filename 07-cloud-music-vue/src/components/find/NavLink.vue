@@ -31,7 +31,7 @@ export default {
                 },
                 {
                     text: '歌单',
-                    path: '/list',
+                    path: '/songlists',
                     icon: '&#xe60a;'
                 },
                 {

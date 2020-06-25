@@ -1,5 +1,6 @@
 <template>
     <div class="daily-recommend">
+        <Loading class="loading" v-show="!recSongs" />
         <list-view
             title="每日推荐"
             :bgUrl="recSongs[0].album.picUrl"
@@ -21,8 +22,9 @@
 import api from '@/api'
 import ListView from '@/components/base/ListView'
 import { mapActions } from 'vuex'
+import Loading from '@/components/base/Loading'
 export default {
-    components: { ListView },
+    components: { ListView, Loading },
     data() {
         return {
             recSongs: [],
@@ -82,24 +84,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.banner {
-    height: 20vh;
-    width: 100vw;
+.daily-recommend {
     position: relative;
-    .date {
-        font-size: 20px;
-        color: #fff;
-        letter-spacing: 1px;
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-        text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
-        .day {
-            font-size: 32px;
-            padding-right: 2px;
-        }
-        .month {
-            padding-left: 2px;
+    .loading {
+        position: fixed;
+        left: 50%;
+        top: 50vh;
+        transform: translate(-30%, -50%);
+        z-index: 10;
+    }
+
+    .banner {
+        height: 20vh;
+        width: 100vw;
+        position: relative;
+        .date {
+            font-size: 20px;
+            color: #fff;
+            letter-spacing: 1px;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
+            .day {
+                font-size: 32px;
+                padding-right: 2px;
+            }
+            .month {
+                padding-left: 2px;
+            }
         }
     }
 }

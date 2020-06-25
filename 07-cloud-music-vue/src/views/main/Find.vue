@@ -5,9 +5,6 @@
                 <swiper />
             </div>
             <nav-link></nav-link>
-            <div class="loading-container" v-show="!songList.length">
-                <loading />
-            </div>
             <div class="wrapper">
                 <recommend :recSongList="songList" />
                 <new-song
@@ -23,14 +20,13 @@
 <script>
 import Swiper from '@/components/find/Swiper'
 import NavLink from '@/components/find/NavLink'
-import Loading from '@/components/base/Loading'
 import Recommend from '@/components/find/Recommend'
 import NewSong from '@/components/find/NewSong'
 import api from '@/api'
 import utils from '@/utils'
 
 export default {
-    components: { Swiper, NavLink, Loading, Recommend, NewSong },
+    components: { Swiper, NavLink, Recommend, NewSong },
     created() {
         this.logined ? this.getLoginRecommendMusicList() : this.getRecommendMusicList();
         this.getNewDish();
@@ -120,14 +116,6 @@ export default {
     .swipe-container {
         transform: translateZ(0);
         overflow: hidden;
-    }
-    .loading-container {
-        position: absolute;
-        top: 60%;
-        left: 50%;
-        transform: translateX(-22%);
-        width: 100vw;
-        background-color: #fff;
     }
     .wrapper {
         padding: 20px 15px;

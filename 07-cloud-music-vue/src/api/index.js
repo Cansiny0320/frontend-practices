@@ -75,13 +75,13 @@ import {
     djToplistPopulars,
     djToplistPays,
     songDetail,
+    playList,
 } from './config';
 // 请求超时时间
 axios.defaults.timeout = 30000;
 
 // post请求头
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-
 /**
  * 以后可以利用 ES6 的解构赋值进行重构
  * function personInfo({ name, age, address, gender }) {
@@ -172,6 +172,22 @@ export default {
                 limit,
                 before,
                 cat,
+            },
+        });
+    },
+    /**
+     * @param {*} order 可选值为 'new' 和 'hot', 分别对应最新和最热 , 默认为 'hot'
+     * @param {*} limit 取出歌单数量 , 默认为 30
+     * @param {*} cat cat: tag 默认全部
+     * @param {*} offset 偏移数量 , 用于分页 , 如 :( 评论页数 -1)*30, 其中 30 为 limit 的值
+     */
+    playListFn({ limit = 30, cat, offset, order = 'hot' }) {
+        return axios.get(playList, {
+            params: {
+                limit,
+                cat,
+                offset,
+                order,
             },
         });
     },
@@ -458,9 +474,6 @@ export default {
         return axios.get(songDetail, {
             params: {
                 ids,
-            },
-            header: {
-                withCredentials: true,
             },
         });
     },

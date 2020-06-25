@@ -9,11 +9,7 @@
             }"
         ></div>
         <div class="list-view__header">
-            <div class="top">
-                <van-icon name="arrow-left back" size="25" @click="back" />
-                <span class="title">{{ title }}</span>
-            </div>
-
+            <Title :title="title"></Title>
             <div class="list-view__banner">
                 <slot></slot>
             </div>
@@ -52,7 +48,9 @@
 </template>
 
 <script>
+import Title from './Title'
 export default {
+    components: { Title },
     props: {
         tracks: {
             type: Array,
@@ -68,9 +66,6 @@ export default {
         }
     },
     methods: {
-        back() {
-            this.$router.back(-1)
-        },
         selectItem(track, index) {
             this.$emit('select', track, index);
         }
@@ -80,21 +75,6 @@ export default {
 
 <style lang="scss" scoped>
 .list-view {
-    &__header {
-        .top {
-            display: flex;
-            align-items: center;
-            .back {
-                color: #fff;
-                padding: 10px;
-            }
-            .title {
-                color: #fff;
-                font-size: 18px;
-            }
-        }
-    }
-
     .bg {
         position: absolute;
         top: 0;
@@ -124,11 +104,13 @@ export default {
                 &__name {
                     padding: 0 0 5px;
                     font-size: 18px;
+                    line-height: 120%;
                     .alia {
                         color: #888;
                     }
                 }
                 &__artists {
+                    line-height: 100%;
                     color: #888;
                 }
             }

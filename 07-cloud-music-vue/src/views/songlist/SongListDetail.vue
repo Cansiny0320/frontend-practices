@@ -34,24 +34,30 @@ export default {
     },
     methods: {
         async getTracks() {
-            this.tracks = [];
-            const res = await api.songDetailFn(this.songList.trackIds.join(','))
-            this.tracks = res.data.songs.map(item => ({
-                name: item.name,
-                id: item.id,
-                url: `https://music.163.com/song/media/outer/url?id=${item.id}.mp3`,
-                album: {
-                    id: item.al.id,
-                    name: item.al.name,
-                    picUrl: item.al.picUrl
-                },
-                artists: item.ar.map(item => ([
-                    item.name
-                ])),
-                mv: item.mv,
-                alia: item.alia,
-                duration: '',
-            }))
+            try {
+                this.tracks = [];
+                const res = await api.songDetailFn(this.songList.trackIds.join(','))
+                this.tracks = res.data.songs.map(item => ({
+                    name: item.name,
+                    id: item.id,
+                    url: `https://music.163.com/song/media/outer/url?id=${item.id}.mp3`,
+                    album: {
+                        id: item.al.id,
+                        name: item.al.name,
+                        picUrl: item.al.picUrl
+                    },
+                    artists: item.ar.map(item => ([
+                        item.name
+                    ])),
+                    mv: item.mv,
+                    alia: item.alia,
+                    duration: '',
+                }))
+            } catch (error) {
+                console.error(error)
+                this.$router.back(-1)
+            }
+
         },
         selectItem(track, index) {
             this.selectPlay({
