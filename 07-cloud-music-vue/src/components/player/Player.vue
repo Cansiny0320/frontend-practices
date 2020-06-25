@@ -61,7 +61,7 @@
                     <div class="next" @click="next">
                         <i class="iconfont">&#xe66a;</i>
                     </div>
-                    <div class="play-list">
+                    <div class="play-list" @click="show = true">
                         <i class="iconfont">&#xe66c;</i>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
                     <i class="iconfont" v-show="!playing">&#xe66e;</i>
                     <i class="iconfont" v-show="playing">&#xe66d;</i>
                 </div>
-                <div class="play-list">
+                <div class="play-list" @click.stop="show = true">
                     <i class="iconfont">&#xe66c;</i>
                 </div>
             </div>
@@ -112,14 +112,26 @@
             @timeupdate="onPlay"
             @ended="next"
         ></audio>
+        <van-popup
+            v-model="show"
+            position="bottom"
+            round
+            class="play-list-container"
+            ><play-list
+        /></van-popup>
     </div>
 </template>
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+import PlayList from './PlayList'
 export default {
+    components: {
+        PlayList
+    },
     data() {
         return {
+            show: false,
             duration: '',
             progress: 0,
             currentTime: ''
@@ -355,6 +367,9 @@ export default {
             margin: 0 5px;
         }
     }
+}
+.play-list-container {
+    height: 50vh;
 }
 @keyframes rotate {
     0% {

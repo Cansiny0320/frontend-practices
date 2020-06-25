@@ -108,16 +108,13 @@ export default {
                 cat
             })
             return res.data.playlists
-            // .map(item => ({
-            //     name: item.name,
-            //     id: item.id,
-            //     picUrl: item.coverImgUrl,
-            //     playCount: item.playCount
-            // }))
+
         },
-        async onLoad() {
-            await this.initSongList(this.currentList)
-            this.loading = false;
+        onLoad() {
+            setTimeout(() => {
+                this.initSongList(this.currentList)
+                this.loading = false;
+            }, 1000)
         },
         async toDetail(id) {
             const user = JSON.parse(localStorage.getItem('user_info'))
