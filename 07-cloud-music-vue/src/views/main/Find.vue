@@ -63,7 +63,7 @@ export default {
             const songList = res.data.recommend.map(item => ({
                 id: item.id,
                 name: item.name,
-                picUrl: item.picUrl,
+                picUrl: `${item.picUrl}?param=200y200`,
                 playCount: item.playcount
             }))
             this.songList = utils.getRandomRecList(songList, limit);
@@ -74,7 +74,7 @@ export default {
             const songList = res.data.result.map(item => ({
                 id: item.id,
                 name: item.name,
-                picUrl: item.picUrl,
+                picUrl: `${item.picUrl}?param=200y200`,
                 playCount: item.playCount
             }))
             this.songList = utils.getRandomRecList(songList, limit);
@@ -83,7 +83,7 @@ export default {
             const limit = 3;
             const res = await api.newDishFn(limit);
             this.newDishs = res.data.albums.map(item => ({
-                picUrl: item.picUrl,
+                picUrl: `${item.picUrl}?param=200y200`,
                 name: item.name,
                 artists: item.artists.map(item => ([
                     item.name
@@ -96,7 +96,7 @@ export default {
             const newSongs = res.data.result.map(item => ({
                 id: item.id,
                 name: item.name,
-                picUrl: item.picUrl,
+                picUrl: `${item.picUrl}?param=200y200`,
                 artists: item.song.artists.map(item => ([
                     item.name
                 ]))

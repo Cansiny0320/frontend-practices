@@ -89,7 +89,7 @@ export default {
                 for (let i = 0; i < playLists.length; i++) {
                     const name = playLists[i].name
                     const id = playLists[i].id
-                    const picUrl = playLists[i].coverImgUrl
+                    const picUrl = `${playLists[i].coverImgUrl}?param=300y300`
                     const playCount = playLists[i].playCount
                     item.songList.push({
                         name,

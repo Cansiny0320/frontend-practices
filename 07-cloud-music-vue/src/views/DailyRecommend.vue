@@ -54,7 +54,7 @@ export default {
                 album: {
                     id: item.album.id,
                     name: item.album.name,
-                    picUrl: item.album.blurPicUrl
+                    picUrl: `${item.album.blurPicUrl}?param=500y500`
                 },
                 artists: item.artists.map(item => (
                     item.name

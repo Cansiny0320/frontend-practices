@@ -60,12 +60,12 @@ export default {
             const songList = {
                 id: playlist.id,
                 name: playlist.name,
-                coverImgUrl: playlist.coverImgUrl,
+                coverImgUrl: `${playlist.coverImgUrl}?param=80y80`,
                 description: playlist.description,
                 playCount: playlist.playCount,
                 trackCount: playlist.trackCount,
                 creator: {
-                    avatarUrl: playlist.creator.avatarUrl,
+                    avatarUrl: `${playlist.creator.avatarUrl}?param=80y80`,
                     nickname: playlist.creator.nickname
                 },
                 trackIds: playlist.trackIds.map(item => ([

@@ -36,8 +36,6 @@ export default {
         ])
     },
     created() {
-        console.log(this.playList);
-
     },
     methods: {
         select(index) {
