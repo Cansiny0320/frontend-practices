@@ -23,6 +23,7 @@ import api from '@/api'
 import ListView from '@/components/base/ListView'
 import { mapActions } from 'vuex'
 import Loading from '@/components/base/Loading'
+import { createSong } from '@/common/js/Song'
 export default {
     components: { ListView, Loading },
     data() {
@@ -43,24 +44,15 @@ export default {
     },
     methods: {
         async getRecSongs() {
-            const user = JSON.parse(localStorage.getItem('user_info'))
-            const res = await api.recSongsFn(user.cookie);
-            this.recSongs = res.data.recommend.map(item => ({
-                name: item.name,
-                id: item.id,
-                url: `https://music.163.com/song/media/outer/url?id=${item.id}.mp3`,
-                alia: item.alias,
-                duration: '',
-                album: {
-                    id: item.album.id,
-                    name: item.album.name,
-                    picUrl: `${item.album.blurPicUrl}?param=500y500`
-                },
-                artists: item.artists.map(item => (
-                    item.name
-                )),
-                mv: item.mvid,
-            }))
+            try {
+                const user = JSON.parse(localStorage.getItem('user_info'))
+                const res = await api.recSongsFn(user.cookie);
+                this.recSongs = res.data.data.dailySongs.map(item => createSong(item))
+            } catch (err) {
+                console.error(err)
+                this.$router.back(-1)
+            }
+
         },
         $_pad(num, n = 2) {
             let len = num.toString().length

@@ -558,11 +558,12 @@ export default {
      * @param {*} id 音乐id
      * @param {*} like 布尔值 , 默认为 true 即喜欢 , 若传 false, 则取消喜欢
      */
-    likeMusicFn(id, like) {
+    likeMusicFn(id, like, cookie) {
         return axios.get(likeMusic, {
             params: {
                 id,
                 like,
+                cookie,
             },
         });
     },
@@ -570,11 +571,12 @@ export default {
      * 调用此接口 , 传入用户 id, 可获取已喜欢音乐id列表(id数组)
      * @param {*} uid 用户id
      */
-    likeMusicListFn(uid) {
+    likeMusicListFn(uid, cookie) {
         const timestamp = +new Date();
         return axios.get(likeMusicList, {
             params: {
                 uid,
+                cookie,
                 timestamp,
             },
         });

@@ -36,9 +36,10 @@
 
 <script>
 import api from '@/api'
-import { addLocalStorage } from '@/common/localStorage'
+import { addLocalStorage } from '@/common/js/localStorage'
 import HistorySearch from '@/components/search/HistorySearch'
 import { mapMutations } from 'vuex'
+import { createSong } from '@/common/js/Song'
 export default {
     components: { HistorySearch },
     data() {
@@ -57,28 +58,20 @@ export default {
             }))
         },
         async handleItemClick(keywords) {
-            this.setKeywords(keywords);
-            const res = await api.searchFn({
-                keywords,
-                type: 1
-            })
-            const songs = res.data.result.songs.map(item => ({
-                id: item.id,
-                url: `https://music.163.com/song/media/outer/url?id=${item.id}.mp3`,
-                name: item.name,
-                artists: item.artists.map(item => ([
-                    item.name
-                ])),
-                album: {
-                    name: item.album.name,
-                    id: item.album.id,
-                    picUrl: '',
-                },
-                duration: Math.floor(item.duration / 1000)
-            }))
-            this.setSearchSongs(songs)
-            addLocalStorage('search_history', { keywords })
-            this.$router.push(`/search/${keywords}`)
+            try {
+                this.setKeywords(keywords);
+                const res = await api.searchFn({
+                    keywords,
+                    type: 1
+                })
+                const songs = res.data.result.songs.map(item => createSong(item, 1))
+                this.setSearchSongs(songs)
+                addLocalStorage('search_history', { keywords })
+                this.$router.push(`/search/${keywords}`)
+            } catch (error) {
+                console.error(error)
+            }
+
         },
         ...mapMutations({
             setKeywords: 'SET_KEYWORDS',

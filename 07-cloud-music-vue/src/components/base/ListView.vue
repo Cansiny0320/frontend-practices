@@ -29,12 +29,12 @@
                     <div class="item__left">
                         <div class="item__left__name van-ellipsis">
                             <span v-html="item.name"></span>
-                            <span class="alia" v-if="item.alia[0]"
-                                >({{ item.alia[0] }})</span
+                            <span class="alia" v-if="item.alia"
+                                >({{ item.alia }})</span
                             >
                         </div>
                         <div class="item__left__artists van-ellipsis">
-                            {{ item.artists.join('/') }} -
+                            {{ item.artists }} -
                             {{ item.album.name }}
                         </div>
                     </div>
@@ -93,7 +93,6 @@ export default {
             display: flex;
             align-items: center;
             padding: 10px 0;
-
             .index {
                 font-size: 18px;
                 margin-right: 15px;
@@ -110,7 +109,7 @@ export default {
                     }
                 }
                 &__artists {
-                    line-height: 100%;
+                    line-height: 120%;
                     color: #888;
                 }
             }

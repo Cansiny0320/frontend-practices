@@ -30,8 +30,9 @@
 <script>
 import api from '@/api'
 import { mapMutations } from 'vuex'
-import { addLocalStorage } from '@/common/localStorage'
+import { addLocalStorage } from '@/common/js/localStorage'
 import SearchAdvice from './SearchAdvice'
+import { createSong } from '@/common/js/Song'
 export default {
     components: { SearchAdvice },
     props: {
@@ -68,7 +69,6 @@ export default {
             this.$router.push('/singer')
         },
         async search() {
-
             try {
                 !this._keywords && (this._keywords = this.defaultRealKeywords)
                 await console.log(); //延时
@@ -76,27 +76,13 @@ export default {
                     keywords: this._keywords,
                     type: 1
                 })
-                const songs = res.data.result.songs.map(item => ({
-                    id: item.id,
-                    url: `https://music.163.com/song/media/outer/url?id=${item.id}.mp3`,
-                    name: item.name,
-                    artists: item.artists.map(item => ([
-                        item.name
-                    ])),
-                    album: {
-                        name: item.album.name,
-                        id: item.album.id,
-                        picUrl: '',
-                    },
-                    duration: Math.floor(item.duration / 1000)
-                }))
+                const songs = res.data.result.songs.map(item => createSong(item, 1))
                 this.setKeywords(this._keywords)
                 this.setSearchSongs(songs)
                 addLocalStorage('search_history', { keywords: this._keywords })
                 this.$router.push(`/search/${this._keywords}`)
             } catch (error) {
                 console.error(error);
-
             }
         },
         async getDefaultSearchKeywords() {

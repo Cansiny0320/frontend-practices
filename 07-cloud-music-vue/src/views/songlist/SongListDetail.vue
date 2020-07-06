@@ -16,6 +16,7 @@ import ListView from '@/components/base/ListView'
 import Banner from '@/components/songlist/SongListBanner'
 import api from '@/api'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
+import { createSong } from '@/common/js/Song'
 export default {
     components: { ListView, Banner },
     data() {
@@ -37,24 +38,9 @@ export default {
             try {
                 this.tracks = [];
                 const res = await api.songDetailFn(this.songList.trackIds.join(','))
-                this.tracks = res.data.songs.map(item => ({
-                    name: item.name,
-                    id: item.id,
-                    url: `https://music.163.com/song/media/outer/url?id=${item.id}.mp3`,
-                    album: {
-                        id: item.al.id,
-                        name: item.al.name,
-                        picUrl: `${item.al.picUrl}?param=300y300`
-                    },
-                    artists: item.ar.map(item => ([
-                        item.name
-                    ])),
-                    mv: item.mv,
-                    alia: item.alia,
-                    duration: '',
-                }))
-            } catch (error) {
-                console.error(error)
+                this.tracks = res.data.songs.map(item => createSong(item))
+            } catch (err) {
+                console.error(err)
                 this.$router.back(-1)
             }
 

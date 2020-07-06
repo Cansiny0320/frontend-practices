@@ -118,6 +118,7 @@ export default {
         li {
             flex: 30%;
             margin: 0 5px;
+            overflow: hidden;
         }
         li:nth-child(3n + 1) {
             margin-right: 0;

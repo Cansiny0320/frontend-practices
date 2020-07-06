@@ -17,7 +17,7 @@
                                     {{ item.name }}
                                 </div>
                                 <div class="item__left__artists">
-                                    {{ item.artists.join('/') }} -
+                                    {{ item.artists }} -
                                     {{ item.album.name }}
                                 </div>
                             </div>

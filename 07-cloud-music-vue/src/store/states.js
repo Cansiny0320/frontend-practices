@@ -1,4 +1,4 @@
-import { playMode } from '@/common/config';
+import { playMode } from '@/common/js/config';
 const state = {
     keywords: '',
     searchSongs: {},

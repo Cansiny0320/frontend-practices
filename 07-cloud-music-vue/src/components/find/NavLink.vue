@@ -83,7 +83,7 @@ export default {
         position: absolute;
         font-size: 14px;
         top: 3px;
-        left: calc(50% - 8px);
+        left: calc(50% - 4px);
         color: #fff;
     }
 }

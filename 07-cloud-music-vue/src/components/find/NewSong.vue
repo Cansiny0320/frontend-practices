@@ -41,7 +41,7 @@
             >
                 <img v-lazy="item.picUrl" />
                 <div class="info">
-                    <div class="name" v-html="item.name"></div>
+                    <div class="name van-ellipsis" v-html="item.name"></div>
                     <div class="artists van-ellipsis">
                         {{ item.artists.join('/') }}
                     </div>
@@ -56,7 +56,7 @@
             >
                 <img v-lazy="item.picUrl" />
                 <div class="info">
-                    <div class="name" v-html="item.name"></div>
+                    <div class="name van-ellipsis" v-html="item.name"></div>
                     <div class="artists van-ellipsis">
                         {{ item.artists.join('/') }}
                     </div>

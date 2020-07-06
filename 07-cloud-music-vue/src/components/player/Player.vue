@@ -1,73 +1,95 @@
 <template>
     <div class="player" v-show="playList.length">
-        <div class="player--full" v-show="fullScreen">
-            <div
-                class="player--full__bg"
-                :style="{
-                    backgroundImage: `url(${currentSong.album.picUrl})`
-                }"
-            ></div>
-            <div
-                class="player--full__disc rotate"
-                :class="{ play: playing, pause: !playing }"
-            >
-                <img
-                    :src="currentSong.album.picUrl"
-                    v-show="currentSong.album.picUrl"
-                />
-            </div>
-
-            <div class="player--full__header">
-                <div class="back" @click="back">
-                    <i class="iconfont">&#xe666;</i>
-                </div>
-                <div class="info">
-                    <div class="info__name van-ellipsis">
-                        {{ currentSong.name }}
-                    </div>
-                    <div class="info__artists van-ellipsis">
-                        {{ currentSong.artists.join('/') }}
-                    </div>
-                </div>
-            </div>
-            <div class="player--full__bottom">
-                <div class="progress">
-                    <span class="current-time">{{
-                        formatTime(currentTime)
-                    }}</span>
-                    <van-slider
-                        v-model="progress"
-                        @change="onChange"
-                        active-color="#eee"
-                        button-size="10px"
-                        class="progress__bar"
+        <transition name="van-slide-up">
+            <div class="player--full" v-show="fullScreen">
+                <div
+                    class="player--full__bg"
+                    :style="{
+                        backgroundImage: `url(${currentSong.album.picUrl})`
+                    }"
+                ></div>
+                <div
+                    class="player--full__disc rotate"
+                    :class="{ play: playing, pause: !playing }"
+                >
+                    <img
+                        :src="currentSong.album.picUrl"
+                        v-show="currentSong.album.picUrl"
                     />
-                    <span class="duration">{{ formatTime(duration) }}</span>
                 </div>
-                <div class="control">
-                    <div class="play-mode">
-                        <i class="iconfont" v-show="mode === 0">&#xe66f;</i>
-                        <i class="iconfont" v-show="mode === 1">&#xe672;</i>
-                        <i class="iconfont" v-show="mode === 2">&#xe66f;</i>
-                    </div>
-                    <div class="prev" @click="prev">
-                        <i class="iconfont">&#xe66b;</i>
-                    </div>
 
-                    <div class="playing" @click="togglePlaying">
-                        <i class="iconfont" v-show="!playing">&#xe66e;</i>
-                        <i class="iconfont" v-show="playing">&#xe66d;</i>
+                <div class="player--full__header">
+                    <div class="back" @click="back">
+                        <i class="iconfont">&#xe666;</i>
                     </div>
-                    <div class="next" @click="next">
-                        <i class="iconfont">&#xe66a;</i>
+                    <div class="info">
+                        <div class="info__name van-ellipsis">
+                            {{ currentSong.name }}
+                        </div>
+                        <div class="info__artists van-ellipsis">
+                            {{ currentSong.artists }}
+                        </div>
                     </div>
-                    <div class="play-list" @click="show = true">
-                        <i class="iconfont">&#xe66c;</i>
+                </div>
+                <div class="player--full__bottom">
+                    <div class="action">
+                        <div class="like" @click="like">
+                            <i class="iconfont unliked" v-show="isLiked === -1"
+                                >&#xe674;</i
+                            >
+                            <i
+                                class="iconfont liked"
+                                v-show="isLiked > -1"
+                                :style="{ color: 'red' }"
+                                >&#xe673;</i
+                            >
+                        </div>
+                        <div class="download">
+                            <i class="iconfont">&#xe663;</i>
+                        </div>
+                        <div class="comment">
+                            <i class="iconfont">&#xe675;</i>
+                            <span class="num">1w+</span>
+                        </div>
+                        <div class="info"><i class="iconfont">&#xe676;</i></div>
+                    </div>
+                    <div class="progress">
+                        <span class="current-time">{{
+                            formatTime(currentTime)
+                        }}</span>
+                        <van-slider
+                            v-model="progress"
+                            @change="onChange"
+                            active-color="#eee"
+                            button-size="10px"
+                            class="progress__bar"
+                        />
+                        <span class="duration">{{ formatTime(duration) }}</span>
+                    </div>
+                    <div class="control">
+                        <div class="play-mode">
+                            <i class="iconfont" v-show="mode === 0">&#xe66f;</i>
+                            <i class="iconfont" v-show="mode === 1">&#xe672;</i>
+                            <i class="iconfont" v-show="mode === 2">&#xe66f;</i>
+                        </div>
+                        <div class="prev" @click="prev">
+                            <i class="iconfont">&#xe66b;</i>
+                        </div>
+
+                        <div class="playing" @click="togglePlaying">
+                            <i class="iconfont" v-show="!playing">&#xe66e;</i>
+                            <i class="iconfont" v-show="playing">&#xe66d;</i>
+                        </div>
+                        <div class="next" @click="next">
+                            <i class="iconfont">&#xe66a;</i>
+                        </div>
+                        <div class="play-list" @click="show = true">
+                            <i class="iconfont">&#xe66c;</i>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
+        </transition>
         <div
             class="player--mini"
             v-show="!fullScreen"
@@ -81,7 +103,7 @@
                     {{ currentSong.name }}
                 </div>
                 <div class="info__artists van-ellipsis">
-                    {{ currentSong.artists.join('/') }}
+                    {{ currentSong.artists }}
                 </div>
             </div>
             <div class="player--mini__control">
@@ -125,6 +147,7 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import PlayList from './PlayList'
+import api from '@/api'
 export default {
     components: {
         PlayList
@@ -134,10 +157,14 @@ export default {
             show: false,
             duration: '',
             progress: 0,
-            currentTime: ''
+            currentTime: '',
+            likeList: [],
         }
     },
     computed: {
+        isLiked() {
+            return this.likeList.indexOf(this.currentSong.id);
+        },
         ...mapGetters([
             'fullScreen',
             'playList',
@@ -159,6 +186,9 @@ export default {
                 newPlaying ? audio.play() : audio.pause()
             })
         }
+    },
+    created() {
+        this.getLikeList()
     },
     methods: {
         back() {
@@ -209,11 +239,27 @@ export default {
             }
             return num
         },
+        async getLikeList() {
+            const user = JSON.parse(localStorage.getItem('user_info'))
+            const res = await api.likeMusicListFn(user.id, user.cookie)
+            this.likeList = res.data.ids
+        },
+        like() {
+            const user = JSON.parse(localStorage.getItem('user_info'))
+            if (this.isLiked === -1) {
+                api.likeMusicFn(this.currentSong.id, true, user.cookie)
+                this.likeList.push(this.currentSong.id)
+            } else {
+                api.likeMusicFn(this.currentSong.id, false, user.cookie)
+                this.$set(this.likeList, this.isLiked, 0)
+            }
+        },
         ...mapMutations({
             setFullScreen: 'SET_FULL_SCREEN',
             setPlayingState: 'SET_PLAYING_STATE',
             setCurrentIndex: 'SET_CURRENT_INDEX'
         })
+
     }
 }   
 </script>
@@ -295,6 +341,22 @@ export default {
         }
     }
     &__bottom {
+        .action {
+            display: flex;
+            justify-content: space-between;
+            margin: 0 50px 20px;
+            .iconfont {
+                font-size: 30px;
+            }
+            .comment {
+                position: relative;
+                .num {
+                    position: absolute;
+                    top: -3px;
+                    right: -15px;
+                }
+            }
+        }
         .control {
             padding: 10px 30px;
             display: flex;

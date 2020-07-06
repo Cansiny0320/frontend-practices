@@ -25,6 +25,7 @@
 <script>
 import { mapMutations } from 'vuex'
 import api from '@/api'
+import { createSong } from '@/common/js/Song'
 export default {
     data() {
         return {
@@ -40,27 +41,19 @@ export default {
             this.historySearch = JSON.parse(localStorage.getItem('search_history'))
         },
         async click(keywords) {
-            const res = await api.searchFn({
-                keywords,
-                type: 1
-            })
-            const songs = res.data.result.songs.map(item => ({
-                id: item.id,
-                url: `https://music.163.com/song/media/outer/url?id=${item.id}.mp3`,
-                name: item.name,
-                artists: item.artists.map(item => ([
-                    item.name
-                ])),
-                album: {
-                    name: item.album.name,
-                    id: item.album.id,
-                    picUrl: '',
-                },
-                duration: Math.floor(item.duration / 1000)
-            }))
-            this.setKeywords(keywords);
-            this.setSearchSongs(songs)
-            this.$router.push(`/search/${keywords}`)
+            try {
+                const res = await api.searchFn({
+                    keywords,
+                    type: 1
+                })
+                const songs = res.data.result.songs.map(item => createSong(item, 1))
+                this.setKeywords(keywords);
+                this.setSearchSongs(songs)
+                this.$router.push(`/search/${keywords}`)
+            } catch (error) {
+                console.error(error)
+            }
+
         },
         ...mapMutations({
             setKeywords: 'SET_KEYWORDS',
