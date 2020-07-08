@@ -82,6 +82,11 @@ const routes = [
         name: 'dailyRecommend',
         component: () => import('@/views/DailyRecommend'),
     },
+    {
+        path: '/comment/:id',
+        name: 'comment',
+        component: () => import('@/views/Comment'),
+    },
 ];
 
 const router = new VueRouter({

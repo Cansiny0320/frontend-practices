@@ -76,6 +76,7 @@ import {
     djToplistPays,
     songDetail,
     playList,
+    commentMusic,
 } from './config';
 // 请求超时时间
 axios.defaults.timeout = 30000;
@@ -929,6 +930,24 @@ export default {
         return axios.get(getVideoUrl, {
             params: {
                 id,
+            },
+        });
+    },
+    /**
+     * 说明 : 调用此接口 , 传入音乐 id 和 limit 参数 , 可获得该音乐的所有评论 ( 不需要 登录 )
+     * 必选参数 : id: 音乐 id
+     * 可选参数 : limit: 取出评论数量 , 默认为 20
+     *  offset: 偏移数量 , 用于分页 , 如 :( 评论页数 -1)*20, 其中 20 为 limit 的值
+     *  before: 分页参数,取上一页最后一项的 time 获取下一页数据(获取超过5000条评论的时候需要用到)
+     *
+     */
+    commentMusicFn({ id, limit, offset, before }) {
+        return axios.get(commentMusic, {
+            params: {
+                id,
+                limit,
+                offset,
+                before,
             },
         });
     },

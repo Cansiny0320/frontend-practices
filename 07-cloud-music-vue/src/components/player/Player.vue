@@ -47,9 +47,11 @@
                         <div class="download">
                             <i class="iconfont">&#xe663;</i>
                         </div>
-                        <div class="comment">
+                        <div class="comment" @click="handleCommentClick">
                             <i class="iconfont">&#xe675;</i>
-                            <span class="num">1w+</span>
+                            <span class="num">{{
+                                commentsNumber | filterCommentsNumber
+                            }}</span>
                         </div>
                         <div class="info"><i class="iconfont">&#xe676;</i></div>
                     </div>
@@ -61,6 +63,7 @@
                             v-model="progress"
                             @change="onChange"
                             active-color="#eee"
+                            inactive-color="#999"
                             button-size="10px"
                             class="progress__bar"
                         />
@@ -159,6 +162,7 @@ export default {
             progress: 0,
             currentTime: '',
             likeList: [],
+            commentsNumber: '',
         }
     },
     computed: {
@@ -176,6 +180,8 @@ export default {
     },
     watch: {
         currentSong() {
+
+            this.getComments();
             this.$nextTick(() => {
                 this.$refs.audio.play()
             })
@@ -254,12 +260,36 @@ export default {
                 this.$set(this.likeList, this.isLiked, 0)
             }
         },
+        handleCommentClick() {
+
+            this.$router.push({
+                path: `/comment/${this.currentSong.id}`,
+                params: {
+                    id: this.currentSong.id
+                }
+            })
+        },
+        async getComments() {
+            const res = await api.commentMusicFn({
+                id: this.currentSong.id
+            });
+            let { total } = res.data;
+            this.commentsNumber = total;
+
+        },
         ...mapMutations({
             setFullScreen: 'SET_FULL_SCREEN',
             setPlayingState: 'SET_PLAYING_STATE',
             setCurrentIndex: 'SET_CURRENT_INDEX'
         })
 
+    },
+    filters: {
+        filterCommentsNumber(commentsNumber) {
+            if (commentsNumber > 10000) return '1w+ '
+            else if (commentsNumber > 999) return '999+'
+            else return commentsNumber + ' '
+        }
     }
 }   
 </script>
@@ -353,7 +383,8 @@ export default {
                 .num {
                     position: absolute;
                     top: -3px;
-                    right: -15px;
+                    right: calc(-100% + 8px);
+                    width: 32px;
                 }
             }
         }

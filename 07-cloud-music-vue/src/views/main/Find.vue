@@ -63,7 +63,7 @@ export default {
             const songList = res.data.recommend.map(item => ({
                 id: item.id,
                 name: item.name,
-                picUrl: `${item.picUrl}?param=200y200`,
+                picUrl: `${item.picUrl}?param=300y300`,
                 playCount: item.playcount
             }))
             this.songList = utils.getRandomRecList(songList, limit);
@@ -74,7 +74,7 @@ export default {
             const songList = res.data.result.map(item => ({
                 id: item.id,
                 name: item.name,
-                picUrl: `${item.picUrl}?param=200y200`,
+                picUrl: `${item.picUrl}?param=300y300`,
                 playCount: item.playCount
             }))
             this.songList = utils.getRandomRecList(songList, limit);

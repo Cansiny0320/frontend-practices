@@ -60,7 +60,7 @@ export default {
             const songList = {
                 id: playlist.id,
                 name: playlist.name,
-                coverImgUrl: `${playlist.coverImgUrl}?param=80y80`,
+                coverImgUrl: `${playlist.coverImgUrl}?param=300y300`,
                 description: playlist.description,
                 playCount: playlist.playCount,
                 trackCount: playlist.trackCount,

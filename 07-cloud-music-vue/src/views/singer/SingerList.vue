@@ -59,7 +59,7 @@ export default {
             try {
                 const res = await api.singerClassFn();
                 this.singerList = res.data.artists.map(item => ({
-                    picUrl: item.picUrl,
+                    picUrl: `${item.picUrl}?param=300y300`,
                     followed: item.followed,
                     name: item.name,
                     id: item.id,
