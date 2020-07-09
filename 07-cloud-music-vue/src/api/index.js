@@ -385,7 +385,8 @@ export default {
      * @param {*} uid 用户id
      * @param {*} timestamp 时间戳，使得每次请求的URL不同，除掉了默认的2分钟缓存
      */
-    playlistFn(uid, timestamp) {
+    playlistFn(uid) {
+        const timestamp = +new Date();
         return axios.get(playlist, {
             params: {
                 uid,
