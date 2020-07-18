@@ -15,7 +15,7 @@
                 <van-icon name="ellipsis" class="action" />
             </div>
         </div>
-        <ul class="container">
+        <ul class="container" v-show="active">
             <li
                 v-for="(item, index) of list"
                 :key="index"
@@ -117,9 +117,9 @@ export default {
         .left {
             display: flex;
             .arrow {
-                margin-right: 5px;
+                padding: 1px 5px 5px 0;
                 transform: rotate(-90deg);
-                transition: 0.6s all ease-in-out;
+                transition: 0.4s all ease-in-out;
             }
             .arrow.active {
                 transform: rotate(0);
@@ -128,6 +128,7 @@ export default {
         .right {
             .action {
                 transform: rotate(90deg);
+                margin-left: 5px;
             }
         }
     }

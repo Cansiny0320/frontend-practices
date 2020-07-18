@@ -13,5 +13,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+#app {
+    // 播放器高度
+    padding-bottom: 59px;
+}
 </style>
 
